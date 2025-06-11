@@ -8,7 +8,10 @@ return {
     "saghen/blink.cmp",
     dependencies = { "R-nvim/cmp-r" },
     opts = {
-      sources = { default = { "cmp_r" }, providers = { cmp_r = { name = "cmp_r", module = "blink.compat.source" } } },
+      sources = {
+        per_filetype = { r = { inherit_defaults = true, "cmp_r" } },
+        providers = { cmp_r = { name = "cmp_r", module = "blink.compat.source" } },
+      },
     },
   },
 
