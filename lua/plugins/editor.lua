@@ -42,6 +42,45 @@ return {
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "helix",
+      icons = {
+        breadcrumb = "󰄾", -- symbol used in the command line area that shows your active key combo
+        separator = "󱦰", -- symbol used between a key and it's label
+        group = "󰐕", -- symbol prepended to a group
+        ellipsis = "󰇘",
+        -- used by key format
+        keys = {
+          Up = "󰁝",
+          Down = "󰁅",
+          Left = "󰁍",
+          Right = "󰁔",
+          C = "󰘴",
+          M = "󰘵",
+          D = "󰘳",
+          S = "󰘶",
+          CR = "󰌑",
+          Esc = "󱊷",
+          ScrollWheelDown = "󱕐",
+          ScrollWheelUp = "󱕑",
+          NL = "󰌑",
+          BS = "󰌍",
+          Space = "󱁐",
+          Tab = "󰌒",
+          F1 = "󱊫",
+          F2 = "󱊬",
+          F3 = "󱊭",
+          F4 = "󱊮",
+          F5 = "󱊯",
+          F6 = "󱊰",
+          F7 = "󱊱",
+          F8 = "󱊲",
+          F9 = "󱊳",
+          F10 = "󱊴",
+          F11 = "󱊵",
+          F12 = "󱊶",
+        },
+      },
     },
     keys = {
       {
