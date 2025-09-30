@@ -158,7 +158,7 @@ return {
               end
             elseif cmp.snippet_active({ direction = 1 }) then
               cmp.snippet_forward()
-            elseif require("config").has_word_before() then
+            elseif require("config").has_words_before() then
               cmp.show()
               if #cmp.get_items() == 1 then
                 cmp.select_and_accept()
