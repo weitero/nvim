@@ -4,7 +4,7 @@ opt.breakat:remove("-") -- characters that may cause a line break
 opt.breakindent = true -- wrapped line repeats indent
 opt.cindent = true -- do C program indenting
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- use the clipboard as the unnamed register
-opt.colorcolumn = "+1" -- columns to highlight
+opt.colorcolumn = "81" -- columns to highlight
 opt.completeopt:append({ "menuone", "noselect" }) -- options for Insert mode completion
 opt.completeopt:remove("popup") -- options for Insert mode completion
 opt.conceallevel = 2 -- whether concealable text is shown or hidden
@@ -18,13 +18,14 @@ opt.foldlevel = 99 -- close folds with a level higher than this
 opt.foldmethod = "expr" -- folding type
 opt.formatexpr = "v:lua.require'conform'.formatexpr()" -- expression used with "gq" command
 opt.formatoptions:append({ n = true, t = true }) -- how automatic formatting is to be done
+opt.guicursor = "" -- GUI: settings for cursor shape and blinking
 opt.ignorecase = true -- ignore case in search patterns
 opt.infercase = true -- adjust case of match for keyword completion
 opt.jumpoptions = "view" -- specifies how jumping is done
 opt.laststatus = 3 -- tells when last window has status lines
 opt.linebreak = true -- wrap long lines at a blank
 opt.list = true -- show <Tab> and <EOL>
-opt.listchars:append({ eol = "", multispace = "󱁐", leadmultispace = " " }) -- characters for displaying in list mode
+opt.listchars:append({ eol = "", multispace = "󱁐 ", leadmultispace = " " }) -- characters for displaying in list mode
 opt.modeline = false -- recognize modelines at start or end of file
 opt.modelines = 0 -- number of lines checked for modelines
 opt.mouse = "a" -- enable the use of mouse clicks
@@ -55,7 +56,6 @@ opt.splitright = true -- new window is put right of the current one
 opt.swapfile = false -- whether to use a swapfile for a buffer
 opt.syntax = "ON" -- syntax to be loaded for current buffer
 opt.tabstop = 4 -- number of spaces that <Tab> in file uses
-opt.textwidth = 80 -- maximum width of text that is being inserted
 opt.timeoutlen = 300 -- time out time in milliseconds
 opt.undofile = true -- save undo information in a file
 opt.undolevels = 10000 -- maximum number of changes that can be undone
