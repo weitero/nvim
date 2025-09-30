@@ -5,7 +5,7 @@ end
 return {
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "lua_ls" } },
+    opts = { ensure_installed = { "lua_ls" }, automatic_enable = { exclude = { "stylua" } } },
     opts_extend = { "automatic_enable.exclude", "ensure_installed" },
     dependencies = {
       "mason-org/mason.nvim",
