@@ -7,7 +7,7 @@ vim.diagnostic.config({
     source = "if_many",
     prefix = function(diagnostic, i, total)
       if diagnostic.namespace == lazy_ns then
-        return "󰐺"
+        return "󰊢 "
       end
 
       local curr_severity = diagnostic.severity
