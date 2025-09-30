@@ -119,4 +119,15 @@ return {
       },
     },
   },
+
+  {
+    "weitero/informal.nvim",
+    -- dir = "~/repos/informal.nvim/",
+    opts = {
+      -- pragma_comments = {
+      --
+      --   ruff = { "# fmt: skip", { "# fmt: off", "# fmt: on" } },
+      -- },
+    },
+  },
 }
