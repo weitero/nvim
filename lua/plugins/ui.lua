@@ -44,6 +44,7 @@ return {
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
       opts.indent = { highlight = highlight }
       opts.scope = { highlight = highlight }
+      opts.exclude = { filetypes = { "dashboard", "help", "lazy", "mason" } }
       return opts
     end,
   },
@@ -163,13 +164,22 @@ return {
   },
 
   {
-    "goolord/alpha-nvim",
-    dependencies = {
-      "echasnovski/mini.icons",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function(_, opts)
-      require("alpha").setup(require("alpha.themes.theta").config)
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function()
+      local header = [[
+░░      ░░░  ░░░░  ░░        ░░░      ░░
+▒  ▒▒▒▒  ▒▒  ▒▒▒  ▒▒▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒  ▒
+▓  ▓▓▓▓  ▓▓     ▓▓▓▓▓▓▓▓  ▓▓▓▓▓  ▓▓▓▓  ▓
+█        ██  ███  ██████  █████  ████  █
+█  ████  ██  ████  ██        ███      ██
+]]
+      header = string.rep("\n", 8) .. header .. "\n\n"
+      local opts = {
+        theme = "doom",
+        config = { header = vim.split(header, "\n") },
+      }
+      return opts
     end,
   },
 }
