@@ -16,7 +16,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    dependencies = "echasnovski/mini.icons",
+    dependencies = "nvim-mini/mini.icons",
     opts = {
       options = {
         diagnostics = "nvim_lsp",
@@ -26,7 +26,7 @@ return {
     },
   },
 
-  { "echasnovski/mini.icons", version = false, opts = {} },
+  { "nvim-mini/mini.icons", version = false, opts = {} },
 
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -113,7 +113,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "echasnovski/mini.icons" },
+    dependencies = { "nvim-mini/mini.icons" },
     opts = {
       sections = {
         lualine_b = {
