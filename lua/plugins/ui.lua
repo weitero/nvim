@@ -49,7 +49,8 @@ return {
     end,
   },
   {
-    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
+    -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
+    "HiPhish/rainbow-delimiters.nvim",
     main = "rainbow-delimiters.setup",
     opts = { highlight = require("config").rainbow },
   },
