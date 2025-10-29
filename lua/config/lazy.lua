@@ -21,6 +21,14 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+local vscode_plugins = {
+  "lazy.nvim",
+  "dial.nvim",
+  "mini.surround",
+  "nvim-treesitter",
+  "nvim-treesitter-textobjects",
+}
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -35,6 +43,15 @@ require("lazy").setup({
     -- have outdated releases, which may break your Neovim install.
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
+    -- default `cond` you can use to globally disable a lot of plugins
+    -- when running inside vscode for example
+    cond = function(plugin)
+      if vim.g.vscode then
+        return vim.tbl_contains(vscode_plugins, plugin.name)
+      else
+        return true
+      end
+    end, ---@type boolean|fun(self:LazyPlugin):boolean|nil
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
