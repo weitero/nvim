@@ -18,7 +18,14 @@ opt.foldlevel = 99 -- close folds with a level higher than this
 opt.foldmethod = "expr" -- folding type
 opt.formatexpr = "v:lua.require'conform'.formatexpr()" -- expression used with "gq" command
 opt.formatoptions:append({ n = true, t = true }) -- how automatic formatting is to be done
-opt.guicursor = "" -- GUI: settings for cursor shape and blinking
+opt.guicursor = {
+  "n-v-c:block",
+  "i-ci-ve:ver25",
+  "r-cr:hor20",
+  "o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+} -- GUI: settings for cursor shape and blinking
 opt.ignorecase = true -- ignore case in search patterns
 opt.infercase = true -- adjust case of match for keyword completion
 opt.jumpoptions = "view" -- specifies how jumping is done
@@ -35,7 +42,7 @@ opt.pumheight = 10 -- maximum number of items to show in the popup menu
 opt.relativenumber = true -- show relative line number in front of each line
 opt.report = 0 -- threshold for reporting nr. of lines changed
 opt.ruler = false -- show cursor line and column in the status line
-opt.scrolloff = 7 -- minimum nr. of lines above and below cursor
+opt.scrolloff = 4 -- minimum nr. of lines above and below cursor
 opt.sessionoptions:append({ "globals", "skiprtp" }) -- options for :mksession
 opt.shiftround = true -- round indent to multiple of shiftwidth
 opt.shiftwidth = 4 -- number of spaces to use for (auto)indent step
@@ -43,7 +50,7 @@ opt.shortmess:append({ W = true, I = true, c = true }) -- list of flags, reduce 
 opt.showbreak = "" -- string to use at the start of wrapped lines
 opt.showmatch = true -- briefly jump to matching bracket if insert one
 opt.showmode = false -- message on status line to show current mode
-opt.sidescrolloff = 7 -- min. nr. of columns to left and right of cursor
+opt.sidescrolloff = 8 -- min. nr. of columns to left and right of cursor
 opt.smartcase = true -- no ignore case when pattern has uppercase
 opt.smartindent = true -- smart autoindenting for C programs
 opt.smoothscroll = true -- scroll by screen lines when 'wrap' is set
