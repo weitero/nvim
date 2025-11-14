@@ -20,7 +20,7 @@ return {
     opts = {
       options = {
         diagnostics = "nvim_lsp",
-        separator_style = "slant",
+        separator_style = "padded_slope",
         get_element_icon = get_element_icon,
       },
     },
