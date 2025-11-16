@@ -9,13 +9,6 @@ return {
   },
 
   {
-    "folke/ts-comments.nvim",
-    opts = {},
-    event = "VeryLazy",
-    enabled = vim.fn.has("nvim-0.10.0") == 1,
-  },
-
-  {
     "nvim-mini/mini.surround",
     version = false,
     opts = {
@@ -27,24 +20,29 @@ return {
   },
 
   {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+
+  {
     "danymat/neogen",
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
     keys = {
       {
-        "<leader>nf",
+        "<Leader>nf",
         ":lua require('neogen').generate()<CR>",
-        mode = "n",
-        desc = "",
-        { remap = false, silent = true },
+        { noremap = true, silent = true },
       },
       {
-        "<leader>nc",
+        "<Leader>nc",
         ":lua require('neogen').generate({ type = 'class' })<CR>",
-        mode = "n",
-        desc = "",
-        { remap = false, silent = true },
+        { noremap = true, silent = true },
       },
     },
-    opts = {},
   },
 
   { import = "plugins.extended.coding" },
