@@ -10,6 +10,8 @@ return {
       float = {
         transparent = true, -- enable transparent floating windows
       },
+      -- let catppuccin automatically detect installed plugins and enable their respective integrations
+      auto_integrations = true,
     },
   },
 
