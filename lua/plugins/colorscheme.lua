@@ -6,6 +6,11 @@ return {
     init = function()
       vim.cmd.colorscheme("catppuccin")
     end,
+    opts = {
+      float = {
+        transparent = true, -- enable transparent floating windows
+      },
+    },
   },
 
   -- Lua
