@@ -9,13 +9,13 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "json",
-    "jsonc",
-    "json5",
     "css",
     "html",
     "javascript",
     "javascriptreact",
+    "json",
+    "json5",
+    "jsonc",
     "lua",
     "sh",
     "vim",
@@ -30,7 +30,5 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Briefly highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
