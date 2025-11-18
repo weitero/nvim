@@ -1,9 +1,6 @@
-return {
-  -- {
-  --   "brenoprata10/nvim-highlight-colors",
-  --   opts = {},
-  -- },
+local icons = require("config").icons
 
+return {
   {
     "nvim-mini/mini.hipatterns",
     version = false,
@@ -32,6 +29,17 @@ return {
     },
     opts = {
       -- Your setup opts here
+      symbols = {
+        -- You can use a custom function that returns the icon for each symbol kind.
+        -- This function takes a kind (string) as parameter and should return an
+        -- icon as string.
+        ---@param kind string Key of the icons table below
+        ---@param bufnr integer Code buffer
+        ---@param symbol outline.Symbol The current symbol object
+        ---@returns string|boolean The icon string to display, such as "f", or `false`
+        ---                        to fallback to `icon_source`.
+        icon_fetcher = function(kind, bufnr, symbol) return icons.kinds[kind] end,
+      },
     },
   },
 
@@ -45,49 +53,18 @@ return {
       ---@type false | "classic" | "modern" | "helix"
       preset = "helix",
       icons = {
-        breadcrumb = "󰄾", -- symbol used in the command line area that shows your active key combo
-        separator = "󱦰", -- symbol used between a key and it's label
-        group = "󰐕", -- symbol prepended to a group
-        ellipsis = "󰇘",
+        breadcrumb = icons.misc.breadcrumb, -- symbol used in the command line area that shows your active key combo
+        separator = icons.misc.separator, -- symbol used between a key and it's label
+        group = icons.misc.group, -- symbol prepended to a group
+        ellipsis = icons.misc.ellipsis,
         -- used by key format
-        keys = {
-          Up = "󰁝",
-          Down = "󰁅",
-          Left = "󰁍",
-          Right = "󰁔",
-          C = "󰘴",
-          M = "󰘵",
-          D = "󰘳",
-          S = "󰘶",
-          CR = "󰌑",
-          Esc = "󱊷",
-          ScrollWheelDown = "󱕐",
-          ScrollWheelUp = "󱕑",
-          NL = "󰌑",
-          BS = "󰌍",
-          Space = "󱁐",
-          Tab = "󰌒",
-          F1 = "󱊫",
-          F2 = "󱊬",
-          F3 = "󱊭",
-          F4 = "󱊮",
-          F5 = "󱊯",
-          F6 = "󱊰",
-          F7 = "󱊱",
-          F8 = "󱊲",
-          F9 = "󱊳",
-          F10 = "󱊴",
-          F11 = "󱊵",
-          F12 = "󱊶",
-        },
+        keys = icons.keys,
       },
     },
     keys = {
       {
         "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
+        function() require("which-key").show({ global = false }) end,
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
@@ -99,116 +76,25 @@ return {
     ---@type Flash.Config
     opts = {},
     keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Treesitter Search",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 
   {
     "monaqa/dial.nvim",
     keys = {
-      {
-        "<C-a>",
-        mode = { "n" },
-        function()
-          require("dial.map").manipulate("increment", "normal")
-        end,
-        desc = "",
-      },
-      {
-        "<C-x>",
-        mode = { "n" },
-        function()
-          require("dial.map").manipulate("decrement", "normal")
-        end,
-        desc = "",
-      },
-      {
-        "g<C-a>",
-        mode = { "n" },
-        function()
-          require("dial.map").manipulate("increment", "gnormal")
-        end,
-        desc = "",
-      },
-      {
-        "g<C-x>",
-        mode = { "n" },
-        function()
-          require("dial.map").manipulate("decrement", "gnormal")
-        end,
-        desc = "",
-      },
-      {
-        "<C-a>",
-        mode = { "v" },
-        function()
-          require("dial.map").manipulate("increment", "visual")
-        end,
-        desc = "",
-      },
-      {
-        "<C-x>",
-        mode = { "v" },
-        function()
-          require("dial.map").manipulate("decrement", "visual")
-        end,
-        desc = "",
-      },
-      {
-        "g<C-a>",
-        mode = { "v" },
-        function()
-          require("dial.map").manipulate("increment", "gvisual")
-        end,
-        desc = "",
-      },
-      {
-        "g<C-x>",
-        mode = { "v" },
-        function()
-          require("dial.map").manipulate("decrement", "gvisual")
-        end,
-        desc = "",
-      },
+      { "<C-a>", function() require("dial.map").manipulate("increment", "normal") end },
+      { "<C-x>", function() require("dial.map").manipulate("decrement", "normal") end },
+      { "g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end },
+      { "g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end },
+      { "<C-a>", function() require("dial.map").manipulate("increment", "visual") end, mode = "x" },
+      { "<C-x>", function() require("dial.map").manipulate("decrement", "visual") end, mode = "x" },
+      { "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end, mode = "x" },
+      { "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end, mode = "x" },
     },
     opts = {
       group = { default = { semver = { "semver" } } },
@@ -231,9 +117,7 @@ return {
 
       local function _format_augend(augend_category, augend_config)
         -- TODO: assert type of `augend_category`
-        if type(augend_config) == "table" then
-          return require("dial.augend." .. augend_category).new(augend_config)
-        end
+        if type(augend_config) == "table" then return require("dial.augend." .. augend_category).new(augend_config) end
         return require("dial.augend." .. augend_category).alias[augend_config]
       end
       local function _parse_augends(group_or_filetype)
@@ -255,12 +139,8 @@ return {
         end
       end
 
-      if group then
-        _parse_augends(group)
-      end
-      if filetype then
-        _parse_augends(filetype)
-      end
+      if group then _parse_augends(group) end
+      if filetype then _parse_augends(filetype) end
     end,
   },
 }
