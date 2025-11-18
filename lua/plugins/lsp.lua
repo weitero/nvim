@@ -1,28 +1,20 @@
-if not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then
-  vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
-end
+if not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then vim.lsp.inlay_hint.enable(true, { bufnr = 0 }) end
 
 return {
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "lua_ls" }, automatic_enable = { exclude = { "stylua" } } },
-    opts_extend = { "automatic_enable.exclude", "ensure_installed" },
-    dependencies = {
-      "mason-org/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
-  },
+  { "b0o/schemastore.nvim" },
 
-  { "mason-org/mason.nvim", opts = {} },
+  { "nvimtools/none-ls.nvim" },
 
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "b0o/schemastore.nvim" },
     opts = {
       servers = {
         lua_ls = {
           settings = {
+            -- https://luals.github.io/wiki/settings/
             Lua = {
+              format = { defaultConfig = { indent_size = "2" } },
+              diagnostics = { neededFileStatus = { ["codestyle-check"] = "Any" } },
               codeLens = { enable = true }, -- Enable code lens.
               hint = { enable = true }, -- Whether inline hints should be enabled or not.
               hover = { previewFields = 10 }, -- When a table is hovered, its fields will be displayed in the tooltip. This setting limits how many fields can be seen in the tooltip.
@@ -57,9 +49,7 @@ return {
     },
     config = function(_, opts)
       for server, server_opts in pairs(opts.servers) do
-        if server_opts then
-          vim.lsp.config(server, server_opts)
-        end
+        if server_opts then vim.lsp.config(server, server_opts) end
       end
     end,
   },
