@@ -1,7 +1,6 @@
 return {
   {
     "stevearc/conform.nvim",
-    dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     -- Here is the recommended config for lazy-loading using lazy.nvim
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
@@ -19,11 +18,14 @@ return {
             end
           end)
         end,
-        mode = "",
         desc = "Format code",
       },
     },
+    -- This will provide type hinting with LuaLS
+    ---@module "conform"
+    ---@type conform.setupOpts
     opts = {
+      -- Define your formatters
       formatters_by_ft = {
         lua = { "stylua" },
       },
@@ -34,19 +36,18 @@ return {
       -- Autoformat with extra features
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
         return { timeout_ms = 500, lsp_format = "fallback" }
       end,
       format_after_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
         return { lsp_format = "fallback" }
       end,
     },
     init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
       -- Define a command to run async formatting
       vim.api.nvim_create_user_command("Format", function(args)
         local range = nil
@@ -68,66 +69,13 @@ return {
         else
           vim.g.disable_autoformat = true
         end
-      end, {
-        desc = "Disable autoformat-on-save",
-        bang = true,
-      })
+      end, { desc = "Disable autoformat-on-save", bang = true })
       vim.api.nvim_create_user_command("FormatEnable", function()
         vim.b.disable_autoformat = false
         vim.g.disable_autoformat = false
-      end, {
-        desc = "Re-enable autoformat-on-save",
-      })
+      end, { desc = "Re-enable autoformat-on-save" })
     end,
   },
 
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = {
-      "mason-org/mason.nvim",
-      "mason-org/mason-lspconfig.nvim",
-      "jay-babu/mason-null-ls.nvim",
-      "jay-babu/mason-nvim-dap.nvim",
-    },
-    opts = {
-      -- a list of all tools you want to ensure are installed upon
-      -- start
-      ensure_installed = { "stylua" },
-
-      -- if set to true this will check each tool for updates. If updates
-      -- are available the tool will be updated. This setting does not
-      -- affect :MasonToolsUpdate or :MasonToolsInstall.
-      -- Default: false
-      auto_update = true,
-    },
-    opts_extend = { "ensure_installed" },
-  },
-
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ui = {
-        ---@since 1.11.0
-        -- The backdrop opacity. 0 is fully opaque, 100 is fully transparent.
-        backdrop = 100,
-
-        icons = {
-          package_installed = "󰏗 ",
-          package_pending = "󱧕 ",
-          package_uninstalled = "󱧔 ",
-        },
-      },
-    },
-  },
-
-  {
-    "weitero/informal.nvim",
-    -- dir = "~/repos/informal.nvim/",
-    opts = {
-      -- pragma_comments = {
-      --
-      --   ruff = { "# fmt: skip", { "# fmt: off", "# fmt: on" } },
-      -- },
-    },
-  },
+  { "weitero/informal.nvim", opts = {} },
 }
