@@ -4,17 +4,36 @@ local defaults = {
   -- icons used by other plugins
   icons = {
     misc = {
-      dots = "󰇘 ",
+      breadcrumb = "󰄾",
+      separator = "󱦰",
+      group = "󰐕",
+      ellipsis = "󰇘 ",
     },
     ft = {
       octo = " ",
     },
     dap = {
-      Stopped = { "", "DiagnosticWarn", "DapStoppedLine" },
+      Stopped = "",
       Breakpoint = "",
       BreakpointCondition = "",
-      BreakpointRejected = { "", "DiagnosticError" },
+      BreakpointRejected = "",
       LogPoint = "",
+    },
+    dapui = {
+      controls = {
+        pause = "",
+        play = "",
+        step_into = "",
+        step_over = "",
+        step_out = "",
+        step_back = "",
+        run_last = "",
+        terminate = "",
+        disconnect = "",
+      },
+      expanded = "",
+      collapsed = "",
+      current_frame = "",
     },
     diagnostics = {
       [vim.diagnostic.severity.ERROR] = " ",
@@ -26,6 +45,33 @@ local defaults = {
       added = " ",
       modified = " ",
       removed = " ",
+    },
+    lazynvim = {
+      cmd = "",
+      config = "",
+      debug = "",
+      event = "",
+      favorite = "",
+      ft = "",
+      init = "",
+      import = "",
+      keys = "",
+      lazy = "",
+      loaded = "",
+      not_loaded = "",
+      plugin = "",
+      runtime = "",
+      require = "",
+      source = "",
+      start = "",
+      task = "",
+      list = {
+        "",
+        "",
+        "",
+        "",
+        "",
+      },
     },
     kinds = {
       Array = " ",
@@ -69,6 +115,36 @@ local defaults = {
       Value = " ",
       Variable = " ",
     },
+    keys = {
+      Up = "",
+      Down = "",
+      Left = "",
+      Right = "",
+      C = "󰘴",
+      M = "󰘵",
+      D = "󰘳",
+      S = "󰘶",
+      CR = "󰌑",
+      Esc = "󱊷",
+      ScrollWheelDown = "󱕐",
+      ScrollWheelUp = "󱕑",
+      NL = "󰌑",
+      BS = "󰌍",
+      Space = "󱁐",
+      Tab = "󰌒",
+      F1 = "󱊫",
+      F2 = "󱊬",
+      F3 = "󱊭",
+      F4 = "󱊮",
+      F5 = "󱊯",
+      F6 = "󱊰",
+      F7 = "󱊱",
+      F8 = "󱊲",
+      F9 = "󱊳",
+      F10 = "󱊴",
+      F11 = "󱊵",
+      F12 = "󱊶",
+    },
   },
   rainbow = {
     "RainbowRed",
@@ -98,9 +174,7 @@ function M.has_words_before()
 end
 
 setmetatable(M, {
-  __index = function(_, key)
-    return vim.deepcopy(defaults)[key]
-  end,
+  __index = function(_, key) return vim.deepcopy(defaults)[key] end,
 })
 
 return M
