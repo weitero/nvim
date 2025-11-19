@@ -1,7 +1,44 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "markdown", "markdown_inline", "r", "rnoweb", "yaml", "latex", "csv" } },
+    opts = {
+      ensure_installed = {
+        "csv",
+        "latex",
+        "markdown",
+        "markdown_inline",
+        "r",
+        "rnoweb",
+        "yaml",
+      },
+    },
+  },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = { automatic_enable = { exclude = { "air" } } },
+  },
+
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "air" } },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = { formatters_by_ft = { r = { "air" } } },
+  },
+
+  {
+    "R-nvim/R.nvim",
+    ft = { "r" },
+    opts = {},
+  },
+
+  {
+    "R-nvim/cmp-r",
+    ft = { "r" },
+    dependencies = { "R-nvim/R.nvim" },
   },
 
   {
@@ -14,13 +51,4 @@ return {
       },
     },
   },
-
-  { "R-nvim/cmp-r", ft = { "r" }, dependencies = { "R-nvim/R.nvim" } },
-  { "R-nvim/R.nvim", ft = { "r" }, opts = {} },
-
-  { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = { "air" } } },
-
-  { "mason-org/mason-lspconfig.nvim", opts = { automatic_enable = { exclude = { "air" } } } },
-
-  { "stevearc/conform.nvim", opts = { formatters_by_ft = { r = { "air" } } } },
 }
