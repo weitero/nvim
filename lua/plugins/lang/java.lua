@@ -23,40 +23,26 @@ return {
       cmd = { vim.fn.stdpath("data") .. "/mason/bin/jdtls" },
       root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 
-      -- Here you can configure eclipse.jdt.ls specific settings
-      -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-      -- for a list of options
+      -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
       settings = {
         java = {
-          cleanUp = {
-            actionsOnSave = {
-              "qualifyMembers",
-              "qualifyStaticMembers",
-              "addOverride",
-              "addDeprecated",
-              "stringConcatToTextBlock",
-              "invertEquals",
-              "addFinalModifier",
-              "instanceofPatternMatch",
-              "lambdaExpression",
-              "switchExpression",
-            },
-          },
-          -- Enable/disable the implementations code lens,
+          completion = { matchCase = "off" },
+          -- Enable/disable the signature help,
           -- default is false
-          implementationsCodeLens = { enabled = true },
-          inlayHints = { parameterNames = { enabled = "all" } },
-          -- Enable/disable the references code lens,
-          -- default is false?
-          referencesCodeLens = { enabled = true },
+          signatureHelp = { enabled = true, description = { enabled = true } },
+          codeGeneration = { generateComments = true },
+          edit = { smartSemicolonDetection = { enabled = true } },
           saveActions = {
             -- Enable/disable auto organize imports on save action,
             -- default is false
             organizeImports = true,
           },
-          -- Enable/disable the signature help,
-          -- default is false
-          signatureHelp = { enabled = true, description = { enabled = true } },
+          -- Enable/disable the references code lens,
+          -- default is true
+          referencesCodeLens = { enabled = true },
+          -- Enable/disable the implementations code lens,
+          implementationCodeLens = "all",
+          symbols = { includeSourceMethodDeclarations = true },
         },
       },
 
