@@ -11,27 +11,14 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "htmlhint", "prettier" } },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        -- basedpyright = {
-        --   settings = {
-        --     basedpyright = {
-        --       disableOrganizeImports = true,
-        --       analysis = { inlayHints = { genericTypes = true }, useTypingExtensions = true },
-        --     },
-        --   },
-        -- },
-      },
-    },
+    opts = { ensure_installed = { "prettier" } },
   },
 
   {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { html = { "prettier" } } },
+    opts = {
+      formatters_by_ft = { html = { "prettier" } },
+      formatters = { prettier = { prepend_args = { "--trailing-comma", "es5" } } },
+    },
   },
 }

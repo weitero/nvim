@@ -15,23 +15,10 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        -- basedpyright = {
-        --   settings = {
-        --     basedpyright = {
-        --       disableOrganizeImports = true,
-        --       analysis = { inlayHints = { genericTypes = true }, useTypingExtensions = true },
-        --     },
-        --   },
-        -- },
-      },
-    },
-  },
-
-  {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { css = { "prettier" } } },
+    opts = {
+      formatters_by_ft = { javascript = { "prettier" }, javascriptreact = { "prettier" } },
+      formatters = { prettier = { prepend_args = { "--single-quote", "--trailing-comma", "es5" } } },
+    },
   },
 }
