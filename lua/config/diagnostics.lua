@@ -6,9 +6,7 @@ vim.diagnostic.config({
   virtual_text = {
     source = "if_many",
     prefix = function(diagnostic, i, total)
-      if diagnostic.namespace == lazy_ns then
-        return "󰊢 "
-      end
+      if diagnostic.namespace == lazy_ns then return "󰊢 " end
 
       local curr_severity = diagnostic.severity
       local lnum = diagnostic.lnum
@@ -27,15 +25,11 @@ vim.diagnostic.config({
       end
       return prefix
     end,
-    format = function(diagnostic)
-      return diagnostic.namespace == lazy_ns and diagnostic.message or ""
-    end,
+    format = function(diagnostic) return diagnostic.namespace == lazy_ns and diagnostic.message or "" end,
   },
   virtual_lines = {
     current_line = true,
-    format = function(diagnostic)
-      return icons[diagnostic.severity] .. diagnostic.message
-    end,
+    format = function(diagnostic) return icons[diagnostic.severity] .. diagnostic.message end,
   },
   signs = {
     text = {
