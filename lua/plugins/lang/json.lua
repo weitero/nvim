@@ -11,12 +11,15 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "fixjson", "jq" } },
+    opts = { ensure_installed = { "fixjson", "prettier" } },
   },
 
   {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { json = { "fixjson", "jq" } } },
+    opts = {
+      formatters_by_ft = { json = { "fixjson", "prettier" }, jsonc = { "fixjson", "prettier" } },
+      formatters = { prettier = { prepend_args = { "--trailing-comma", "es5" } } },
+    },
   },
 
   {
