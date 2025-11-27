@@ -170,7 +170,27 @@ local defaults = {
 function M.has_words_before()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0
+    and vim.api
+        .nvim_buf_get_lines(0, line - 1, line, true)[1]
+        :sub(col, col)
+        :match("%s")
+      == nil
+end
+
+function M.find_config(configs)
+  local git_dir = vim.fs.root(0, ".git")
+  if git_dir ~= nil then
+    for _, value in ipairs(configs) do
+      if vim.uv.fs_stat(git_dir .. value) ~= nil then return true end
+    end
+    return false
+  end
+
+  for _, value in ipairs(configs) do
+    if vim.fs.root(0, value) ~= nil then return true end
+  end
+  return false
 end
 
 setmetatable(M, {
