@@ -11,14 +11,11 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "prettier" } },
+    opts = { ensure_installed = { "biome" } },
   },
 
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = { css = { "prettier" } },
-      formatters = { prettier = { prepend_args = { "--single-quote", "--trailing-comma", "es5" } } },
-    },
+    opts = { formatters_by_ft = { css = { "biome" } } },
   },
 }
