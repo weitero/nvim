@@ -1,4 +1,7 @@
-if not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then vim.lsp.inlay_hint.enable(true, { bufnr = 0 }) end
+-- if not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then
+--   vim.lsp.inlay_hint
+--       .enable(true, { bufnr = 0 })
+-- end
 
 return {
   { "b0o/schemastore.nvim" },
@@ -13,23 +16,18 @@ return {
           settings = {
             -- https://luals.github.io/wiki/settings/
             Lua = {
-              format = { defaultConfig = { indent_size = "2" } },
+              -- format = { defaultConfig = { indent_size = "2" } },
               diagnostics = { neededFileStatus = { ["codestyle-check"] = "Any" } },
-              codeLens = { enable = true }, -- Enable code lens.
-              hint = { enable = true }, -- Whether inline hints should be enabled or not.
+              codeLens = { enable = true },   -- Enable code lens.
+              hint = { enable = true },       -- Whether inline hints should be enabled or not.
               hover = { previewFields = 10 }, -- When a table is hovered, its fields will be displayed in the tooltip. This setting limits how many fields can be seen in the tooltip.
               runtime = {
                 -- Tell the language server how to find Lua modules same way as Neovim
                 -- (see `:h lua-module-load`)
-                path = {
-                  "?.lua",
-                  "?/init.lua",
-                  "lua/?.lua",
-                  "lua/?/init.lua",
-                }, -- Defines the paths to use when using require.
+                path = { "?.lua", "?/init.lua", "lua/?.lua", "lua/?/init.lua" },  -- Defines the paths to use when using require.
                 -- Tell the language server which version of Lua you're using (most
                 -- likely LuaJIT in the case of Neovim)
-                version = "LuaJIT", -- The Lua runtime version to use in this environment.
+                version = "LuaJIT",                  -- The Lua runtime version to use in this environment.
               },
               type = { castNumberToInteger = true }, -- Whether casting a number to an integer is allowed.
               -- Make the server aware of Neovim runtime files

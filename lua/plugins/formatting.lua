@@ -30,9 +30,7 @@ return {
     ---@type conform.setupOpts
     opts = {
       -- Set default options
-      default_format_opts = {
-        lsp_format = "fallback",
-      },
+      default_format_opts = { lsp_format = "fallback" },
       -- Autoformat with extra features
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
@@ -58,16 +56,9 @@ return {
         if args.count ~= -1 then
           local end_line =
               vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-          range = {
-            start = { args.line1, 0 },
-            ["end"] = { args.line2, end_line:len() },
-          }
+          range = { start = { args.line1, 0 }, ["end"] = { args.line2, end_line:len() } }
         end
-        require("conform").format({
-          async = true,
-          lsp_format = "fallback",
-          range = range,
-        })
+        require("conform").format({ async = true, lsp_format = "fallback", range = range })
       end, { range = true })
 
       -- Create user commands to quickly enable/disable autoformatting
@@ -87,4 +78,40 @@ return {
   },
 
   { "weitero/informal.nvim", opts = {} },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        lua_ls = {
+          settings = {
+            -- https://luals.github.io/wiki/settings/
+            Lua = {
+              format = {
+                defaultConfig = {
+                  ["continuation_indent.before_block"] = "4",
+                  ["continuation_indent.in_expr"] = "4",
+                  ["continuation_indent.in_table"] = "4",
+                  align_continuous_assign_statement = "false",
+                  auto_collapse_lines = "true",
+                  break_all_list_when_line_exceed = "true",
+                  continuation_indent = "4",
+                  end_of_line = "unset",
+                  indent_size = "2",
+                  indent_style = "space",
+                  insert_final_newline = "true",
+                  max_line_length = "100",
+                  never_indent_before_if_condition = "false",
+                  never_indent_comment_on_if_branch = "false",
+                  quote_style = "double",
+                  tab_width = "2",
+                  table_separator_style = "comma",
+                  trailing_table_separator = "smart",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
