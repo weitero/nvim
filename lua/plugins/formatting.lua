@@ -26,8 +26,8 @@ return {
       },
     },
     -- This will provide type hinting with LuaLS
-    ---@module "conform"
-    ---@type conform.setupOpts
+    --- @module "conform"
+    --- @type conform.setupOpts
     opts = {
       -- Set default options
       default_format_opts = { lsp_format = "fallback" },
