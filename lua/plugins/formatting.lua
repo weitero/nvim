@@ -62,7 +62,7 @@ return {
           async = true,
           lsp_format = "fallback",
           range =
-              range
+              range,
         })
       end, { range = true })
 
