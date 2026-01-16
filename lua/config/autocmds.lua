@@ -14,11 +14,13 @@ vim.api.nvim_create_autocmd("FileType", {
     "javascript",
     "javascriptreact",
     "json",
-    "json5",
     "jsonc",
     "lua",
     "sh",
+    "sql",
+    "toml",
     "vim",
+    "yaml",
     "zsh",
   },
   callback = function()
@@ -30,5 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Briefly highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function() vim.hl.on_yank() end,
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
