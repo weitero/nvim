@@ -1,39 +1,29 @@
 local opt = vim.opt
-opt.autowrite = true                                    -- automatically write file if changed
-opt.breakat:remove("-")                                 -- characters that may cause a line break
-opt.breakindent = true                                  -- wrapped line repeats indent
-opt.cindent = true                                      -- do C program indenting
-opt.clipboard = vim.env.SSH_TTY and "" or
-"unnamedplus"                                           -- use the clipboard as the unnamed register
-opt.colorcolumn = "+1"                                  -- columns to highlight
-opt.completeopt:append({ "menuone", "noselect" })       -- options for Insert mode completion
-opt.completeopt:remove("popup")                         -- options for Insert mode completion
-opt.conceallevel = 2                                    -- whether concealable text is shown or hidden
-opt.confirm = true                                      -- ask what to do about unsaved/read-only files
-opt.copyindent = true                                   -- make 'autoindent' use existing indent structure
-opt.cursorcolumn = true                                 -- highlight the screen column of the cursor
-opt.cursorline = true                                   -- highlight the screen line of the cursor
-opt.expandtab = true                                    -- use spaces when <Tab> is inserted
-opt.foldexpr =
-"v:lua.vim.treesitter.foldexpr()"                       -- expression used when 'foldmethod' is "expr"
-opt.foldlevel = 99                                      -- close folds with a level higher than this
-opt.foldmethod = "expr"                                 -- folding type
-opt.formatoptions:append({ n = true, t = true })        -- how automatic formatting is to be done
-opt.guicursor = {
-  "n-v-c:block",
-  "i-ci-ve:ver25",
-  "r-cr:hor20",
-  "o:hor50",
-  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-  "sm:block-blinkwait175-blinkoff150-blinkon175",
-} -- GUI: settings for cursor shape and blinking
+opt.autowrite = true -- automatically write file if changed
+opt.breakat:remove("-") -- characters that may cause a line break
+opt.breakindent = true -- wrapped line repeats indent
+opt.cindent = true -- do C program indenting
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- use the clipboard as the unnamed register
+opt.colorcolumn = "+1" -- columns to highlight
+opt.completeopt:append({ "menuone", "noselect" }) -- options for Insert mode completion
+opt.completeopt:remove("popup") -- options for Insert mode completion
+opt.conceallevel = 2 -- whether concealable text is shown or hidden
+opt.confirm = true -- ask what to do about unsaved/read-only files
+opt.copyindent = true -- make 'autoindent' use existing indent structure
+opt.cursorcolumn = true -- highlight the screen column of the cursor
+opt.cursorline = true -- highlight the screen line of the cursor
+opt.expandtab = true -- use spaces when <Tab> is inserted
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- expression used when 'foldmethod' is "expr"
+opt.foldlevel = 99 -- close folds with a level higher than this
+opt.foldmethod = "expr" -- folding type
+opt.formatoptions:append({ ["1"] = true, n = true, t = true }) -- how automatic formatting is to be done
 opt.ignorecase = true -- ignore case in search patterns
 opt.infercase = true -- adjust case of match for keyword completion
 opt.jumpoptions = "view" -- specifies how jumping is done
 opt.laststatus = 3 -- tells when last window has status lines
 opt.linebreak = true -- wrap long lines at a blank
 opt.list = true -- show <Tab> and <EOL>
-opt.listchars:append({ eol = "", multispace = "󱁐󱁐", leadmultispace = " " }) -- characters for displaying in list mode
+opt.listchars:append({ eol = "", leadmultispace = " ", multispace = "󱁐󱁐" }) -- characters for displaying in list mode
 opt.modeline = false -- recognize modelines at start or end of file
 opt.modelines = 0 -- number of lines checked for modelines
 opt.mouse = "a" -- enable the use of mouse clicks
@@ -47,7 +37,7 @@ opt.scrolloff = 4 -- minimum nr. of lines above and below cursor
 opt.sessionoptions:append({ "globals", "skiprtp" }) -- options for :mksession
 opt.shiftround = true -- round indent to multiple of shiftwidth
 opt.shiftwidth = 4 -- number of spaces to use for (auto)indent step
-opt.shortmess:append({ W = true, I = true, c = true }) -- list of flags, reduce length of messages
+opt.shortmess:append({ I = true, W = true, c = true }) -- list of flags, reduce length of messages
 opt.showbreak = "" -- string to use at the start of wrapped lines
 opt.showmatch = true -- briefly jump to matching bracket if insert one
 opt.showmode = false -- message on status line to show current mode
@@ -64,7 +54,7 @@ opt.splitright = true -- new window is put right of the current one
 opt.swapfile = false -- whether to use a swapfile for a buffer
 opt.syntax = "ON" -- syntax to be loaded for current buffer
 opt.tabstop = 4 -- number of spaces that <Tab> in file uses
-opt.textwidth = 80 -- Maximum width of text that is being inserted. A longer line will be broken after white space to get this width. A zero value disables this.
+opt.textwidth = 120 -- Maximum width of text that is being inserted.
 opt.timeoutlen = 300 -- time out time in milliseconds
 opt.undofile = true -- save undo information in a file
 opt.undolevels = 10000 -- maximum number of changes that can be undone
@@ -72,7 +62,6 @@ opt.updatetime = 200 -- after this many milliseconds flush swap file
 opt.virtualedit = "block" -- when to use virtual editing
 opt.visualbell = true -- use visual bell instead of beeping
 opt.wildmode = { "longest:full", "full" } -- mode for 'wildchar' command-line expansion
-opt.winborder =
-"rounded" -- Defines the default border style of floating windows.
+opt.winborder = "rounded" -- Defines the default border style of floating windows.
 opt.winminwidth = 5 -- minimal number of columns for any window
 opt.wrap = true -- long lines wrap and continue on the next line
