@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*",
   callback = function()
     -- https://neovim.io/doc/user/change.html#fo-table
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt.formatoptions:remove({ "o", "r" })
   end,
 })
 
