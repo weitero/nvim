@@ -23,8 +23,10 @@ vim.diagnostic.config({
         local severity_changed_from_last = last_severity ~= current_severity
         if is_first_item or severity_changed_from_last then
           last_severity = current_severity
-          local severity_count = vim.diagnostic.count(0, { lnum = diagnostic.lnum, severity = current_severity })[current_severity]
-            or 0
+          local severity_count = vim.diagnostic.count(0, {
+            lnum = diagnostic.lnum,
+            severity = current_severity,
+          })[current_severity] or 0
           return (diagnostic_icons[current_severity] or "") .. severity_count .. " "
         end
 
