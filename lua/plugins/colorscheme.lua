@@ -1,5 +1,3 @@
-local catppuccin_colors = require("catppuccin.utils.colors")
-
 return {
   {
     "catppuccin/nvim",
@@ -13,6 +11,7 @@ return {
       auto_integrations = true,
       highlight_overrides = {
         all = function(colors)
+          local catppuccin_colors = require("catppuccin.utils.colors")
           return {
             -- Match upstream CursorColumn, but tweak for better contrast
             -- https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/groups/editor.lua
