@@ -10,18 +10,6 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-      -- 'super-tab' for mappings similar to vscode (tab to accept)
-      -- 'enter' for enter to accept
-      -- 'none' for no mappings
-      --
-      -- All presets have the following mappings:
-      -- C-space: Open menu or open docs if already open
-      -- C-n/C-p or Up/Down: Select next/previous item
-      -- C-e: Hide menu
-      -- C-k: Toggle signature help (if signature.enabled = true)
-      --
-      -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = { preset = "none" },
 
       appearance = {
@@ -30,7 +18,6 @@ return {
         nerd_font_variant = "normal",
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
       completion = { documentation = { auto_show = true } },
 
       -- Default list of enabled providers defined so that you can extend it
@@ -63,10 +50,10 @@ return {
           -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
           range = "full",
         },
-        -- Controls how the completion items are rendered on the popup window
         menu = {
+          -- Controls how the completion items are rendered on the popup window
           draw = {
-            -- You may use treesitter to highlight the label text for the given list of sources. This feature is barebones, as it highlights the item as-is.
+            -- Use treesitter to highlight the label text for the given list of sources
             treesitter = { "lsp" },
           },
         },
@@ -75,9 +62,7 @@ return {
       },
 
       -- Experimental signature help support
-      signature = { enabled = not pcall(function()
-        require("noice")
-      end) },
+      signature = { enabled = not pcall(function() require("noice") end) },
 
       -- By default, the fuzzy matcher will give a bonus score of 4 to exact matches. If you want to ensure that exact matches are always prioritized, you may set:
       fuzzy = {
@@ -94,9 +79,7 @@ return {
         -- Trigger characters are defined by the sources. For example, for Lua, the trigger characters are `.`, `"`, `'`.
         providers = {
           snippets = {
-            should_show_items = function(ctx)
-              return ctx.trigger.initial_kind ~= "trigger_character"
-            end,
+            should_show_items = function(ctx) return ctx.trigger.initial_kind ~= "trigger_character" end,
           },
         },
       },
@@ -160,9 +143,7 @@ return {
               cmp.snippet_forward()
             elseif require("config").has_words_before() then
               cmp.show()
-              if #cmp.get_items() == 1 then
-                cmp.select_and_accept()
-              end
+              if #cmp.get_items() == 1 then cmp.select_and_accept() end
             else
               return
             end
