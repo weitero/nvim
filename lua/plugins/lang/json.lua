@@ -1,7 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "json", "json5", "jsonc" } },
+    opts = { ensure_installed = {
+      "json",
+      "json5",
+      "jsonc",
+    } },
   },
 
   {
@@ -11,12 +15,7 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "fixjson", "biome" } },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { json = { "fixjson", "biome" }, jsonc = { "fixjson", "biome" } } },
+    opts = { ensure_installed = { "fixjson" } },
   },
 
   {
@@ -24,7 +23,28 @@ return {
     opts = {
       servers = {
         jsonls = {
-          settings = { json = { schemas = require("schemastore").json.schemas(), validate = { enable = true } } },
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        json = {
+          "fixjson",
+          "jsonls",
+        },
+        jsonc = {
+          "fixjson",
+          "jsonls",
         },
       },
     },
