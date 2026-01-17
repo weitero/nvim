@@ -10,7 +10,6 @@ opt.completeopt:remove("popup") -- options for Insert mode completion
 opt.conceallevel = 2 -- whether concealable text is shown or hidden
 opt.confirm = true -- ask what to do about unsaved/read-only files
 opt.copyindent = true -- make 'autoindent' use existing indent structure
-opt.cursorcolumn = true -- highlight the screen column of the cursor
 opt.cursorline = true -- highlight the screen line of the cursor
 opt.expandtab = true -- use spaces when <Tab> is inserted
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- expression used when 'foldmethod' is "expr"
