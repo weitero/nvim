@@ -1,32 +1,20 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "csv",
-        "latex",
-        "markdown",
-        "markdown_inline",
-        "r",
-        "rnoweb",
-        "yaml",
-      },
-    },
+    opts = { ensure_installed = { "r" } },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { automatic_enable = { exclude = { "air" } } },
+    opts = {
+      ensure_installed = { "r_language_server" },
+      automatic_enable = { exclude = { "air" } },
+    },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = { ensure_installed = { "air" } },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { r = { "air" } } },
   },
 
   {
@@ -42,12 +30,27 @@ return {
   },
 
   {
+    "stevearc/conform.nvim",
+    opts = { formatters_by_ft = { r = { "air" } } },
+  },
+
+  {
     "saghen/blink.cmp",
     dependencies = { "R-nvim/cmp-r" },
     opts = {
       sources = {
-        per_filetype = { r = { inherit_defaults = true, "cmp_r" } },
-        providers = { cmp_r = { name = "cmp_r", module = "blink.compat.source" } },
+        per_filetype = {
+          r = {
+            inherit_defaults = true,
+            "cmp_r",
+          },
+        },
+        providers = {
+          cmp_r = {
+            name = "cmp_r",
+            module = "blink.compat.source",
+          },
+        },
       },
     },
   },
