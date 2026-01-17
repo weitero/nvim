@@ -9,19 +9,17 @@ return {
         -- Customize or remove this keymap to your liking
         "<leader>f",
         function()
+          -- Leave visual mode after range format
           require("conform").format({ async = true }, function(err)
             if not err then
               local mode = vim.api.nvim_get_mode().mode
               if vim.startswith(string.lower(mode), "v") then
-                vim.api.nvim_feedkeys(
-                  vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
-                  "n",
-                  true
-                )
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
               end
             end
           end)
         end,
+        mdoe = "",
         desc = "Format code",
       },
     },
@@ -29,20 +27,18 @@ return {
     --- @module "conform"
     --- @type conform.setupOpts
     opts = {
+      -- Define your formatters
+      formatters_by_ft = { lua = { "stylua" } },
       -- Set default options
       default_format_opts = { lsp_format = "fallback" },
       -- Autoformat with extra features
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
         return { timeout_ms = 500, lsp_format = "fallback" }
       end,
       format_after_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
         return { lsp_format = "fallback" }
       end,
     },
@@ -54,16 +50,10 @@ return {
       vim.api.nvim_create_user_command("Format", function(args)
         local range = nil
         if args.count ~= -1 then
-          local end_line =
-              vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+          local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
           range = { start = { args.line1, 0 }, ["end"] = { args.line2, end_line:len() } }
         end
-        require("conform").format({
-          async = true,
-          lsp_format = "fallback",
-          range =
-              range,
-        })
+        require("conform").format({ async = true, lsp_format = "fallback", range = range })
       end, { range = true })
 
       -- Create user commands to quickly enable/disable autoformatting
@@ -83,28 +73,4 @@ return {
   },
 
   { "weitero/informal.nvim", opts = {} },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        lua_ls = {
-          settings = {
-            -- https://luals.github.io/wiki/settings/
-            Lua = {
-              format = {
-                defaultConfig = {
-                  indent_size = "2",
-                  max_line_length = "80",
-                  quote_style = "double",
-                  space_after_comment_dash = "true",
-                  tab_width = "2",
-                  trailing_table_separator = "smart",
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
 }
