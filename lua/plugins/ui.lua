@@ -1,18 +1,13 @@
 local diagnostics_icons = require("config").icons.diagnostics
 local git_icons = require("config").icons.git
 
----@param opts bufferline.IconFetcherOpts
----@return string, string?
 local function get_element_icon(opts)
   local mini_icons = require("mini.icons")
-  if opts.directory then
-    return mini_icons.get("directory", opts.path)
-  end
+  if opts.directory then return mini_icons.get("directory", opts.path) end
   return mini_icons.get("file", opts.path)
 end
 
 return {
-  -- using lazy.nvim
   {
     "akinsho/bufferline.nvim",
     version = "*",
@@ -49,7 +44,6 @@ return {
     end,
   },
   {
-    -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
     "HiPhish/rainbow-delimiters.nvim",
     main = "rainbow-delimiters.setup",
     opts = { highlight = require("config").rainbow },
@@ -80,13 +74,13 @@ return {
 
       cmdline = {
         format = {
-          cmdline = { icon = "" },
-          search_down = { icon = "󱦳󰈞" },
-          search_up = { icon = "󱦲󰈞" },
-          filter = { icon = "󰈲" },
+          cmdline = { icon = " " },
+          search_down = { icon = " " },
+          search_up = { icon = " " },
+          filter = { icon = " " },
           lua = { icon = "󰢱 " },
-          help = { icon = "󰋼 " },
-          input = { icon = "󰌌 " }, -- Used by input()
+          help = { icon = " " },
+          input = { icon = " " }, -- Used by input()
         },
       },
       popupmenu = {
@@ -129,7 +123,7 @@ return {
             --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
             -- or a function that returns a table as such:
             --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-            sources = { "nvim_lsp", "nvim_diagnostic", "nvim_workspace_diagnostic" },
+            sources = { "nvim_diagnostic" },
             symbols = {
               error = diagnostics_icons[vim.diagnostic.severity.ERROR],
               warn = diagnostics_icons[vim.diagnostic.severity.WARN],
@@ -178,7 +172,15 @@ return {
       header = string.rep("\n", 8) .. header .. "\n\n"
       local opts = {
         theme = "doom",
-        config = { header = vim.split(header, "\n") },
+        config = {
+          header = vim.split(header, "\n"),
+          center = {
+            { icon = " ", desc = "New File", key = "n", action = ":enew | startinsert" },
+            { icon = " ", desc = "Lazy", key = "l", action = ":Lazy" },
+            { icon = " ", desc = "Mason", key = "m", action = ":Mason" },
+            { icon = " ", desc = "Quit", key = "q", action = ":qa" },
+          },
+        },
       }
       return opts
     end,
