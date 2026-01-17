@@ -1,11 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = {
-      "ninja",
-      "python",
-      "rst",
-    } },
+    opts = { ensure_installed = { "python" } },
   },
 
   {
@@ -18,7 +14,7 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "debugpy", "ruff" } },
+    opts = { ensure_installed = { "ruff" } },
   },
 
   {
@@ -51,16 +47,5 @@ return {
         },
       },
     },
-  },
-
-  {
-    "mfussenegger/nvim-dap-python",
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = function()
-      -- If installed in a virtual environment:
-      require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
-      -- If using the above, then `/path/to/venv/bin/python -m debugpy --version`
-      -- must work in the shell
-    end,
   },
 }
