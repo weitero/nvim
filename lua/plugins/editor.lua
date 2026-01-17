@@ -6,16 +6,24 @@ return {
     version = false,
     config = function(_, opts)
       local hipatterns = require("mini.hipatterns")
-      opts.highlighters = {
-        -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-        fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-        hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-        todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-        note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
 
+      opts.highlighters = {
         -- Highlight hex color strings (`#rrggbb`) using that color
         hex_color = hipatterns.gen_highlighter.hex_color(),
       }
+
+      -- Highlight standalone keyword annotations
+      local keyword_specs = {
+        { key = "fixme", group = "MiniHipatternsFixme" },
+        { key = "hack", group = "MiniHipatternsHack" },
+        { key = "todo", group = "MiniHipatternsTodo" },
+        { key = "note", group = "MiniHipatternsNote" },
+      }
+      for _, spec in ipairs(keyword_specs) do
+        local label = spec.key:upper()
+        opts.highlighters[spec.key] = { pattern = string.format("%%f[%%w]()%s()%%f[%%W]", label), group = spec.group }
+      end
+
       hipatterns.setup(opts)
     end,
   },
@@ -27,30 +35,14 @@ return {
     keys = { -- Example mapping to toggle outline
       { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
-    opts = {
-      -- Your setup opts here
-      symbols = {
-        -- You can use a custom function that returns the icon for each symbol kind.
-        -- This function takes a kind (string) as parameter and should return an
-        -- icon as string.
-        ---@param kind string Key of the icons table below
-        ---@param bufnr integer Code buffer
-        ---@param symbol outline.Symbol The current symbol object
-        ---@returns string|boolean The icon string to display, such as "f", or `false`
-        ---                        to fallback to `icon_source`.
-        icon_fetcher = function(kind, bufnr, symbol) return icons.kinds[kind] end,
-      },
-    },
+    ---@diagnostic disable-next-line: unused-local
+    opts = { symbols = { icon_fetcher = function(kind, bufnr, symbol) return icons.kinds[kind] end } },
   },
 
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-      ---@type false | "classic" | "modern" | "helix"
       preset = "helix",
       icons = {
         breadcrumb = icons.misc.breadcrumb, -- symbol used in the command line area that shows your active key combo
@@ -73,7 +65,6 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {},
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -96,51 +87,43 @@ return {
       { "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end, mode = "x" },
       { "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end, mode = "x" },
     },
-    opts = {
-      group = { default = { semver = { "semver" } } },
-      filetype = {
-        lua = {
-          constant = {
-            "bool",
-            {
-              elements = { "and", "or" },
-              word = true, -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
-              cyclic = true, -- "or" is incremented into "and".
-            },
+    opts = function()
+      local augend = require("dial.augend")
+      return {
+        default = { augend.semver.alias.semver },
+        filetype = {
+          java = {
+            augend.constant.alias.bool,
+            augend.constant.new({ elements = { "&&", "||" }, word = false, cyclic = true }),
+          },
+          lua = {
+            augend.constant.alias.bool,
+            augend.constant.new({ elements = { "and", "or" }, word = true, cyclic = true }),
+          },
+          python = {
+            augend.constant.alias.Bool,
+            augend.constant.new({ elements = { "and", "or" }, word = true, cyclic = true }),
           },
         },
-      },
-    },
+      }
+    end,
     config = function(_, opts)
-      local group = opts.group or {}
-      local filetype = opts.filetype or {}
+      local augends = require("dial.config").augends
+      local default_augends = augends.group.default or {}
+      local extra_default_augends = opts.default or {}
+      -- Merge custom defaults into Dial's builtin default group
+      if #extra_default_augends > 0 then vim.list_extend(default_augends, extra_default_augends) end
+      local merged = {}
 
-      local function _format_augend(augend_category, augend_config)
-        -- TODO: assert type of `augend_category`
-        if type(augend_config) == "table" then return require("dial.augend." .. augend_category).new(augend_config) end
-        return require("dial.augend." .. augend_category).alias[augend_config]
-      end
-      local function _parse_augends(group_or_filetype)
-        for item, augends in pairs(group_or_filetype) do
-          local formatted_augends = {}
-          for augend_category, augend_configs in pairs(augends) do
-            for _, augend_config in ipairs(augend_configs) do
-              table.insert(formatted_augends, _format_augend(augend_category, augend_config))
-            end
-          end
-          if item == "default" then
-            vim.list_extend(require("dial.config").augends.group.default, formatted_augends)
-          elseif item ~= vim.bo.filetype then
-            require("dial.config").augends:register_group({ [item] = formatted_augends })
-          else
-            vim.list_extend(formatted_augends, require("dial.config").augends.group.default)
-            require("dial.config").augends:on_filetype({ [item] = formatted_augends })
-          end
-        end
+      for filetype, filetype_augends in pairs(opts.filetype or {}) do
+        -- Each filetype gets its own augends, plus the shared defaults
+        local combined = vim.deepcopy(default_augends)
+        vim.list_extend(combined, filetype_augends)
+        merged[filetype] = combined
       end
 
-      if group then _parse_augends(group) end
-      if filetype then _parse_augends(filetype) end
+      -- Register per-filetype augends; this replaces defaults unless we merge them
+      augends:on_filetype(merged)
     end,
   },
 }
