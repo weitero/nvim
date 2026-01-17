@@ -18,8 +18,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = { sh = { "shfmt" } },
-      -- The following formatting flags closely resemble Google's shell style defined in https://google.github.io/styleguide/shellguide.html:
-      formatters = { shfmt = { prepend_args = { "-i", "2", "-ci", "-bn" } } },
+      formatters = { shfmt = { prepend_args = { "-s", "-i", "2", "-bn", "-ci" } } },
     },
   },
 }
