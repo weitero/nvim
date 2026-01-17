@@ -1,5 +1,14 @@
 local icons = require("config").icons.lazynvim
 
+local vscode_plugin_allowlist = {
+  "dial.nvim",
+  "informal.nvim",
+  "lazy.nvim",
+  "mini.surround",
+  "nvim-treesitter",
+  "nvim-treesitter-textobjects",
+}
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -23,57 +32,34 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-local vscode_plugins = {
-  "dial.nvim",
-  "lazy.nvim",
-  "mini.surround",
-  "nvim-treesitter",
-  "nvim-treesitter-textobjects",
-}
-
 -- Setup lazy.nvim
 require("lazy").setup({
+  defaults = {
+    cond = function(plugin)
+      return not vim.g.vscode or vim.tbl_contains(vscode_plugin_allowlist, plugin.name)
+    end,
+  },
   spec = {
-    -- import/override with your plugins
+    -- import your plugins
     { import = "plugins" },
   },
-  defaults = {
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
-    version = nil, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
-    -- default `cond` you can use to globally disable a lot of plugins
-    -- when running inside vscode for example
-    cond = function(plugin)
-      if vim.g.vscode then
-        return vim.tbl_contains(vscode_plugins, plugin.name)
-      else
-        return true
-      end
-    end, ---@type boolean|fun(self:LazyPlugin):boolean|nil
-  },
   install = {
-    -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { "habamax" },
+    colorscheme = { "catppuccin" },
   },
   ui = {
-    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "rounded",
-    -- The backdrop opacity. 0 is fully opaque, 100 is fully transparent.
     backdrop = 100,
     icons = icons,
   },
   checker = {
-    -- automatically check for plugin updates
     enabled = true,
-    notify = false, -- get a notification when new updates are found
+    notify = false,
   },
   change_detection = {
-    notify = false, -- get a notification when changes are found
+    notify = false,
   },
   performance = {
     rtp = {
-      ---@type string[] list any plugins you want to disable here
       disabled_plugins = {
         "gzip",
         -- "matchit",
