@@ -1,7 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "c", "cpp" } },
+    opts = {
+      ensure_installed = {
+        "c",
+        "cpp",
+      },
+    },
   },
 
   {
@@ -17,7 +22,10 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { c = { "clang-format" }, cpp = { "clang-format" } },
+      formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+      },
       formatters = {
         ["clang-format"] = {
           prepend_args = {
