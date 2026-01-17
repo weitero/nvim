@@ -11,14 +11,29 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "shellcheck", "shfmt" } },
+    opts = {
+      ensure_installed = {
+        "shellcheck",
+        "shfmt",
+      },
+    },
   },
 
   {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = { sh = { "shfmt" } },
-      formatters = { shfmt = { prepend_args = { "-s", "-i", "2", "-bn", "-ci" } } },
+      formatters = {
+        shfmt = {
+          prepend_args = {
+            "-s",
+            "-i",
+            "2",
+            "-bn",
+            "-ci",
+          },
+        },
+      },
     },
   },
 }
