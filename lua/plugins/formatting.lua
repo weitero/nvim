@@ -19,7 +19,7 @@ return {
             end
           end)
         end,
-        mdoe = "",
+        mode = "",
         desc = "Format code",
       },
     },
