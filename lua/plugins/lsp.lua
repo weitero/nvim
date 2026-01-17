@@ -1,12 +1,7 @@
--- if not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then
---   vim.lsp.inlay_hint
---       .enable(true, { bufnr = 0 })
--- end
+vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
 
 return {
   { "b0o/schemastore.nvim" },
-
-  { "nvimtools/none-ls.nvim" },
 
   {
     "neovim/nvim-lspconfig",
@@ -16,30 +11,14 @@ return {
           settings = {
             -- https://luals.github.io/wiki/settings/
             Lua = {
-              -- format = { defaultConfig = { indent_size = "2" } },
+              codeLens = { enable = true },
+              completion = { callSnippet = "Both", keywordSnippet = "Both" },
               diagnostics = { neededFileStatus = { ["codestyle-check"] = "Any" } },
-              codeLens = { enable = true },   -- Enable code lens.
-              hint = { enable = true },       -- Whether inline hints should be enabled or not.
-              hover = { previewFields = 10 }, -- When a table is hovered, its fields will be displayed in the tooltip. This setting limits how many fields can be seen in the tooltip.
-              runtime = {
-                -- Tell the language server how to find Lua modules same way as Neovim
-                -- (see `:h lua-module-load`)
-                path = { "?.lua", "?/init.lua", "lua/?.lua", "lua/?/init.lua" },  -- Defines the paths to use when using require.
-                -- Tell the language server which version of Lua you're using (most
-                -- likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",                  -- The Lua runtime version to use in this environment.
-              },
-              type = { castNumberToInteger = true }, -- Whether casting a number to an integer is allowed.
-              -- Make the server aware of Neovim runtime files
-              workspace = {
-                checkThirdParty = false, -- Whether addons can be automatically detected and the user can be prompted to enable them.
-                library = {
-                  -- Depending on the usage, you might want to add additional paths
-                  -- here.
-                  "${3rd}/luv/library",
-                  "${3rd}/busted/library",
-                }, -- Used to add library implementation code and definition files to the workspace scope.
-              },
+              format = { defaultConfig = { indent_size = "2", continuation_indent = "2" }, enable = false },
+              hint = { enable = true },
+              runtime = { path = { "?.lua", "?/init.lua", "lua/?.lua", "lua/?/init.lua" }, version = "LuaJIT" },
+              telemetry = { enable = false },
+              workspace = { checkThirdParty = false, library = { "${3rd}/busted/library", "${3rd}/luv/library" } },
             },
           },
         },
