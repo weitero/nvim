@@ -1,0 +1,21 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "sql" } },
+  },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = { ensure_installed = { "sqls" } },
+  },
+
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "sql-formatter" } },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = { formatters_by_ft = { sql = { "sql-formatter" } } },
+  },
+}
