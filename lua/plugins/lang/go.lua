@@ -1,17 +1,24 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = {
-      "go",
-      "gomod",
-      "gosum",
-      "gowork",
-    } },
+    opts = {
+      ensure_installed = {
+        "go",
+        "gomod",
+        "gosum",
+        "gowork",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
     opts = { ensure_installed = { "gopls" } },
+  },
+
+  {
+    "WhoIsSethDanial/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "gofumpt" } },
   },
 
   {
@@ -21,10 +28,9 @@ return {
         gopls = {
           settings = {
             gopls = {
-              gofumpt = true,
+              -- Completion
               usePlaceholder = true,
-              analyses = { unusedparams = true },
-              staticcheck = true,
+              -- Inlayhint
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -39,6 +45,14 @@ return {
           },
         },
       },
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = { go = { "gofumpt" } },
+      formatters = { gofumpt = { prepend_args = { "-extra" } } },
     },
   },
 }
