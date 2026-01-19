@@ -20,6 +20,22 @@ return {
   },
 
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        clangd = {
+          settings = {
+            cmd = {
+              "clangd",
+              "--inlay-hints=true",
+            },
+          },
+        },
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
