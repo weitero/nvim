@@ -178,6 +178,7 @@ return {
             { icon = " ", desc = "New File", key = "n", action = ":enew | startinsert" },
             { icon = " ", desc = "Lazy", key = "l", action = ":Lazy" },
             { icon = " ", desc = "Mason", key = "m", action = ":Mason" },
+            { icon = " ", desc = "Conform", key = "c", action = ":ConformInfo" },
             { icon = " ", desc = "Quit", key = "q", action = ":qa" },
           },
         },
