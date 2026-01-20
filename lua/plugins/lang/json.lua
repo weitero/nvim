@@ -40,11 +40,11 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
-          "jsonls",
+          lsp_format = "fallback",
         },
         jsonc = {
           "fixjson",
-          "jsonls",
+          lsp_format = "fallback",
         },
       },
     },
