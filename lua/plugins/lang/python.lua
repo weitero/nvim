@@ -28,6 +28,8 @@ return {
               analysis = {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
+                inlayHints = { callArgumentNamesMatching = true },
+                typeCheckingMode = "standard",
               },
             },
           },
