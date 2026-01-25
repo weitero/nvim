@@ -9,13 +9,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
+    "bash",
     "css",
     "html",
     "javascript",
     "javascriptreact",
+    "jinja",
     "json",
+    "json5",
     "jsonc",
     "lua",
+    "r",
     "sh",
     "toml",
     "typescript",
