@@ -1,20 +1,32 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "java" } },
+    opts = {
+      ensure_installed = {
+        "java",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "jdtls" },
-      automatic_enable = { exclude = { "jdtls" } },
+      ensure_installed = {
+        "jdtls",
+      },
+      automatic_enable = {
+        exclude = {
+          "jdtls",
+        },
+      },
     },
   },
 
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java" },
+    ft = {
+      "java",
+    },
     opts = {
       -- The command that starts the language server
       -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
