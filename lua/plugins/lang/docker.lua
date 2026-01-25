@@ -1,14 +1,20 @@
 vim.filetype.add({
   filename = {
     ["compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
     ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
   },
 })
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "dockerfile" } },
+    opts = {
+      ensure_installed = {
+        "dockerfile",
+      },
+    },
   },
 
   {
@@ -22,7 +28,16 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    opts = { settings = { docker = { languageserver = { formatter = { ignoreMultilineInstructions = true } } } } },
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        ["yaml.docker-compose"] = {
+          lsp_format = "prefer",
+        },
+        dockerfile = {
+          lsp_format = "prefer",
+        },
+      },
+    },
   },
 }
