@@ -1,20 +1,34 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "python" } },
+    opts = {
+      ensure_installed = {
+        "python",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "basedpyright" },
-      automatic_enable = { exclude = { "ruff" } },
+      ensure_installed = {
+        "basedpyright",
+      },
+      automatic_enable = {
+        exclude = {
+          "ruff",
+        },
+      },
     },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "ruff" } },
+    opts = {
+      ensure_installed = {
+        "ruff",
+      },
+    },
   },
 
   {
@@ -44,8 +58,9 @@ return {
       formatters_by_ft = {
         python = {
           "ruff_fix",
-          "ruff_organize_imports",
           "ruff_format",
+          "ruff_organize_imports",
+          lsp_format = "never",
         },
       },
     },
