@@ -1,14 +1,26 @@
-vim.filetype.add({ filename = { ["_clang-format"] = "yaml" } })
+vim.filetype.add({
+  filename = {
+    ["_clang-format"] = "yaml",
+  },
+})
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "yaml" } },
+    opts = {
+      ensure_installed = {
+        "yaml",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "yamlls" } },
+    opts = {
+      ensure_installed = {
+        "yamlls",
+      },
+    },
   },
 
   {
@@ -19,7 +31,7 @@ return {
           settings = {
             yaml = {
               format = {
-                proseWrap = "always",
+                proseWrap = "Always",
                 printWidth = 120,
               },
               schemas = { ["https://www.schemastore.org/clang-format-21.x.json"] = "_clang-format" },
@@ -34,7 +46,11 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { yaml = { lsp_format = "fallback" } },
+      formatters_by_ft = {
+        yaml = {
+          lsp_format = "prefer",
+        },
+      },
     },
   },
 }
