@@ -1,21 +1,38 @@
+vim.filetype.add({
+  filename = {
+    [".djlintrc"] = "json",
+    ["dot_djlintrc"] = "json",
+  },
+})
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = {
-      "json",
-      "json5",
-      "jsonc",
-    } },
+    opts = {
+      ensure_installed = {
+        "json",
+        "json5",
+        "jsonc",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "jsonls" } },
+    opts = {
+      ensure_installed = {
+        "jsonls",
+      },
+    },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "fixjson" } },
+    opts = {
+      ensure_installed = {
+        "fixjson",
+      },
+    },
   },
 
   {
@@ -40,11 +57,15 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
-          lsp_format = "fallback",
+          lsp_format = "last",
+        },
+        json5 = {
+          "fixjson",
+          lsp_format = "never",
         },
         jsonc = {
           "fixjson",
-          lsp_format = "fallback",
+          lsp_format = "last",
         },
       },
     },
