@@ -35,8 +35,14 @@ return {
     keys = { -- Example mapping to toggle outline
       { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
-    ---@diagnostic disable-next-line: unused-local
-    opts = { symbols = { icon_fetcher = function(kind, bufnr, symbol) return icons.kinds[kind] end } },
+    opts = {
+      symbols = {
+        ---@diagnostic disable-next-line: unused-local
+        icon_fetcher = function(kind, bufnr, symbol)
+          return icons.kinds[kind]
+        end,
+      },
+    },
   },
 
   {
@@ -56,7 +62,9 @@ return {
     keys = {
       {
         "<leader>?",
-        function() require("which-key").show({ global = false }) end,
+        function()
+          require("which-key").show({ global = false })
+        end,
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
@@ -67,25 +75,104 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
 
   {
     "monaqa/dial.nvim",
     keys = {
-      { "<C-a>", function() require("dial.map").manipulate("increment", "normal") end },
-      { "<C-x>", function() require("dial.map").manipulate("decrement", "normal") end },
-      { "g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end },
-      { "g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end },
-      { "<C-a>", function() require("dial.map").manipulate("increment", "visual") end, mode = "x" },
-      { "<C-x>", function() require("dial.map").manipulate("decrement", "visual") end, mode = "x" },
-      { "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end, mode = "x" },
-      { "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end, mode = "x" },
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "normal")
+        end,
+      },
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "normal")
+        end,
+      },
+      {
+        "g<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "gnormal")
+        end,
+      },
+      {
+        "g<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "gnormal")
+        end,
+      },
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "visual")
+        end,
+        mode = "x",
+      },
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "visual")
+        end,
+        mode = "x",
+      },
+      {
+        "g<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "gvisual")
+        end,
+        mode = "x",
+      },
+      {
+        "g<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "gvisual")
+        end,
+        mode = "x",
+      },
     },
     opts = function()
       local augend = require("dial.augend")
@@ -112,7 +199,9 @@ return {
       local default_augends = augends.group.default or {}
       local extra_default_augends = opts.default or {}
       -- Merge custom defaults into Dial's builtin default group
-      if #extra_default_augends > 0 then vim.list_extend(default_augends, extra_default_augends) end
+      if #extra_default_augends > 0 then
+        vim.list_extend(default_augends, extra_default_augends)
+      end
       local merged = {}
 
       for filetype, filetype_augends in pairs(opts.filetype or {}) do

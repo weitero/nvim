@@ -3,7 +3,9 @@ local git_icons = require("config").icons.git
 
 local function get_element_icon(opts)
   local mini_icons = require("mini.icons")
-  if opts.directory then return mini_icons.get("directory", opts.path) end
+  if opts.directory then
+    return mini_icons.get("directory", opts.path)
+  end
   return mini_icons.get("file", opts.path)
 end
 

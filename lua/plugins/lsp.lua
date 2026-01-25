@@ -52,7 +52,9 @@ return {
     },
     config = function(_, opts)
       for server, server_opts in pairs(opts.servers) do
-        if server_opts then vim.lsp.config(server, server_opts) end
+        if server_opts then
+          vim.lsp.config(server, server_opts)
+        end
       end
     end,
   },
