@@ -62,7 +62,9 @@ return {
       },
 
       -- Experimental signature help support
-      signature = { enabled = not pcall(function() require("noice") end) },
+      signature = { enabled = not pcall(function()
+        require("noice")
+      end) },
 
       -- By default, the fuzzy matcher will give a bonus score of 4 to exact matches. If you want to ensure that exact matches are always prioritized, you may set:
       fuzzy = {
@@ -79,7 +81,9 @@ return {
         -- Trigger characters are defined by the sources. For example, for Lua, the trigger characters are `.`, `"`, `'`.
         providers = {
           snippets = {
-            should_show_items = function(ctx) return ctx.trigger.initial_kind ~= "trigger_character" end,
+            should_show_items = function(ctx)
+              return ctx.trigger.initial_kind ~= "trigger_character"
+            end,
           },
         },
       },
@@ -143,7 +147,9 @@ return {
               cmp.snippet_forward()
             elseif require("config").has_words_before() then
               cmp.show()
-              if #cmp.get_items() == 1 then cmp.select_and_accept() end
+              if #cmp.get_items() == 1 then
+                cmp.select_and_accept()
+              end
             else
               return
             end
