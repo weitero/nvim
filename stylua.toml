@@ -1,7 +1,7 @@
 # tombi: format.rules.table-keys-order = "version-sort"
 
 call_parentheses = "Always"
-collapse_simple_statement = "Always"
+collapse_simple_statement = "Never"
 column_width = 120
 indent_type = "Spaces"
 indent_width = 2
