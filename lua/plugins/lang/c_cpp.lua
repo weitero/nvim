@@ -5,32 +5,26 @@ return {
       ensure_installed = {
         "c",
         "cpp",
+        "cuda",
+        "objc",
       },
     },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "clangd" } },
+    opts = {
+      ensure_installed = {
+        "clangd",
+      },
+    },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "clang-format" } },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
     opts = {
-      servers = {
-        clangd = {
-          settings = {
-            cmd = {
-              "clangd",
-              "--inlay-hints=true",
-            },
-          },
-        },
+      ensure_installed = {
+        "clang-format",
       },
     },
   },
@@ -39,25 +33,31 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        c = { "clang-format" },
-        cpp = { "clang-format" },
+        c = {
+          "clang-format",
+          lsp_format = "never",
+        },
+        cpp = {
+          "clang-format",
+          lsp_format = "never",
+        },
       },
       formatters = {
         ["clang-format"] = {
           prepend_args = {
             "--sort-includes",
             "--style={ \z
-              BasedOnStyle: LLVM, \z
-              UseTab: Never, \z
-              IndentWidth: 4, \z
-              TabWidth: 4, \z
-              BreakBeforeBraces: Allman, \z
-              AllowShortIfStatementsOnASingleLine: false, \z
-              IndentCaseLabels: false, \z
-              ColumnLimit: 0, \z
               AccessModifierOffset: -4, \z
+              AllowShortIfStatementsOnASingleLine: Never, \z
+              BasedOnStyle: LLVM, \z
+              BreakBeforeBraces: Allman, \z
+              ColumnLimit: 0, \z
+              FixNamespaceComments: false, \z
+              IndentCaseLabels: false, \z
+              IndentWidth: 4, \z
               NamespaceIndentation: All, \z
-              FixNamespaceComments: false \z
+              TabWidth: 4, \z
+              UseTab: Never, \z
             }",
           },
         },
