@@ -1,24 +1,37 @@
 return {
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "bashls" } },
+    opts = {
+      ensure_installed = {
+        "bashls",
+      },
+    },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "beautysh" } },
+    opts = {
+      ensure_installed = {
+        "shfmt",
+      },
+    },
   },
 
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { zsh = { "beautysh" } },
+      formatters_by_ft = {
+        zsh = {
+          "shfmt",
+          lsp_format = "never",
+        },
+      },
       formatters = {
-        beautysh = {
+        shfmt = {
           prepend_args = {
-            "-i",
-            "2",
-            "-b",
+            "-s",
+            "-bn",
+            "-ci",
           },
         },
       },
