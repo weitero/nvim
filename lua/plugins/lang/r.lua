@@ -1,42 +1,71 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "r" } },
+    opts = {
+      ensure_installed = {
+        "r",
+      },
+    },
   },
 
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "r_language_server" },
-      automatic_enable = { exclude = { "air" } },
+      ensure_installed = {
+        "r_language_server",
+      },
+      automatic_enable = {
+        exclude = {
+          "air",
+        },
+      },
     },
   },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "air" } },
+    opts = {
+      ensure_installed = {
+        "air",
+      },
+    },
   },
 
   {
     "R-nvim/R.nvim",
-    ft = { "r" },
+    ft = {
+      "r",
+    },
     opts = {},
   },
 
   {
     "R-nvim/cmp-r",
-    ft = { "r" },
-    dependencies = { "R-nvim/R.nvim" },
+    ft = {
+      "r",
+    },
+    dependencies = {
+      "R-nvim/R.nvim",
+    },
   },
 
   {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { r = { "air" } } },
+    opts = {
+      formatters_by_ft = {
+        r = {
+          "air",
+          lsp_format = "never",
+        },
+      },
+    },
   },
 
   {
     "saghen/blink.cmp",
-    dependencies = { "R-nvim/cmp-r" },
+    dependencies = {
+      "R-nvim/cmp-r",
+    },
     opts = {
       sources = {
         per_filetype = {
