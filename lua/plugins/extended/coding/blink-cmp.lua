@@ -55,6 +55,12 @@ return {
           draw = {
             -- Use treesitter to highlight the label text for the given list of sources
             treesitter = { "lsp" },
+
+            columns = {
+              { "kind_icon" },
+              { "label" },
+              { "source_name" },
+            },
           },
         },
         -- Displays a preview of the selected item on the current line
