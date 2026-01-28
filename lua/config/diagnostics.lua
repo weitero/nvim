@@ -3,7 +3,7 @@ local lazy_namespace = require("lazy.core.config").ns
 
 vim.diagnostic.config({
   virtual_text = {
-    source = "if_many",
+    source = true,
     prefix = (function()
       local last_severity
 
