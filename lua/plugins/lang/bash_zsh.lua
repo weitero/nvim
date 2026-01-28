@@ -55,6 +55,9 @@ return {
         sh = {
           lsp_format = "prefer",
         },
+        zsh = {
+          lsp_format = "prefer",
+        },
       },
     },
   },
