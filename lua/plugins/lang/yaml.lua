@@ -1,6 +1,9 @@
 vim.filetype.add({
   filename = {
+    [".yamlfmt"] = "yaml",
     ["_clang-format"] = "yaml",
+    ["~/.config/yamllint/config"] = "yaml",
+    dot_yamlfmt = "yaml",
   },
 })
 
@@ -24,20 +27,40 @@ return {
   },
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = {
+        "yamlfix",
+        "yamlfmt",
+        "yamllint",
+      },
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         yamlls = {
           settings = {
             yaml = {
-              format = {
-                proseWrap = "Always",
-                printWidth = 120,
-              },
-              schemas = { ["https://www.schemastore.org/clang-format-21.x.json"] = "_clang-format" },
-              keyOrdering = true,
+              format = { enable = false },
+              schemaStore = { enable = false, url = "" },
+              schemas = require("schemastore").yaml.schemas(),
+              validate = false,
             },
           },
+        },
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        yaml = {
+          "yamllint",
         },
       },
     },
@@ -48,7 +71,9 @@ return {
     opts = {
       formatters_by_ft = {
         yaml = {
-          lsp_format = "prefer",
+          "yamlfix",
+          "yamlfmt",
+          lsp_format = "never",
         },
       },
     },
