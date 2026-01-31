@@ -44,10 +44,11 @@ return {
         yamlls = {
           settings = {
             yaml = {
-              format = { enable = false },
-              schemaStore = { enable = false, url = "" },
               schemas = require("schemastore").yaml.schemas(),
-              validate = false,
+              schemaStore = {
+                enable = false,
+                url = "",
+              },
             },
           },
         },
@@ -73,7 +74,6 @@ return {
         yaml = {
           "yamlfix",
           "yamlfmt",
-          lsp_format = "never",
         },
       },
     },
