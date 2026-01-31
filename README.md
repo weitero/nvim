@@ -3,14 +3,15 @@
 Personal Neovim configuration adapted from **LazyVim**.
 
 - Plugin manager: **lazy.nvim**
-- External tooling (LSP servers / formatters / linters): **mason.nvim**
+- External tooling (LSP servers / formatters / linters): **mason.nvim** (+ mason-tool-installer)
 - LSP configuration: **nvim-lspconfig**
 - Formatting: **conform.nvim**
-- Autocompletion: **blink-cmp**
+- Linting: **nvim-lint**
+- Autocompletion: **blink.cmp**
 
 ## Requirements
 
-- Neovim (recent stable is recommended)
+- Neovim **0.11+** (this config uses `vim.lsp.config`)
 - Git
 - A Nerd Font (recommended for icons)
 
@@ -34,14 +35,15 @@ installed.
 
 ## Layout
 
-- `init.lua`: entry point (loads the lazy.nvim bootstrap)
-- `lua/config/`: core configuration
+- `init.lua`: entry point
+- `lua/config/lazy.lua`: lazy.nvim bootstrap + plugin spec import
+- `lua/config/`: core modules
   - `options.lua`: `vim.opt` defaults
   - `keymaps.lua`: keymaps
   - `autocmds.lua`: autocommands
   - `diagnostics.lua`: diagnostics UI/behavior
-  - `lazy.lua`: lazy.nvim bootstrap + plugin spec import
 - `lua/plugins/`: plugin specs (grouped by area)
+  - `init.lua`: loads core config modules early (options/autocmds/diagnostics/keymaps)
   - `lang/`: language-specific setup (LSP, formatting, extra tools)
   - `extended/`: optional/extra modules
 
@@ -52,6 +54,9 @@ installed.
 Plugin specs live under `lua/plugins/` and are imported via the lazy.nvim setup
 in `lua/config/lazy.lua`.
 
+Core config (`lua/config/*.lua`) is loaded from `lua/plugins/init.lua` so it runs
+as part of the lazy spec import.
+
 Useful commands:
 
 - `:Lazy` — manage / update plugins
@@ -61,6 +66,9 @@ Useful commands:
 
 Third-party binaries (LSP servers, formatters, linters, debuggers) are
 installed/managed via mason.
+
+This config uses `mason-tool-installer.nvim` to automatically ensure some tools
+are installed (globally and per-language modules).
 
 Useful commands:
 
@@ -78,13 +86,28 @@ specs under `lua/plugins/`).
 
 Typical usage:
 
-- `:Format` (if mapped/defined by your config) or format-on-save depending on
-  the language module.
+- `<leader>f` to format (normal/visual)
+- `:ConformInfo` for status
+- format-on-save is enabled (with LSP fallback)
 
-### Completion (blink-cmp)
+### Completion (blink.cmp)
 
-Autocompletion is provided by `blink-cmp` (see
+Autocompletion is provided by `blink.cmp` (see
 `lua/plugins/extended/coding/blink-cmp.lua`).
+
+## Notable defaults
+
+- Leader: `<Space>`; local leader: `\\`
+- Colorscheme: `catppuccin` (with `auto-dark-mode.nvim`)
+- UI: `noice.nvim`, `nvim-notify`, `lualine`, `bufferline`, `dashboard-nvim`, `which-key`
+- Treesitter: highlighting + incremental selection + textobjects + context
+- Formatting key: `<leader>f`
+
+## VS Code integration
+
+When `vim.g.vscode` is set (e.g. by VSCode Neovim), this config only loads a
+small allowlist of plugins to reduce conflicts. The allowlist lives in
+`lua/config/lazy.lua`.
 
 ## Customization
 
@@ -99,8 +122,8 @@ Autocompletion is provided by `blink-cmp` (see
 
 - This config sets `mapleader` to `<Space>` and `maplocalleader` to `\\` in the
   lazy.nvim bootstrap.
-- There is a small VS Code integration guard: when `vim.g.vscode` is set, only
-  an allowlist of plugins is loaded.
+- Formatting is driven by `conform.nvim`; LuaLS formatting is disabled in favor
+  of external formatters.
 
 ## Troubleshooting
 
@@ -112,3 +135,8 @@ Autocompletion is provided by `blink-cmp` (see
 - Formatter not running:
   - confirm the formatter is installed in `:Mason`
   - check `conform.nvim` configuration in formatting-related plugin specs
+  - run `:ConformInfo`
+
+- Lint not running:
+  - this uses `nvim-lint` and runs on common edit events
+  - check the language module under `lua/plugins/lang/` for `linters_by_ft`
