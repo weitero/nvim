@@ -1,4 +1,3 @@
--- stylua: ignore
 local M = {}
 
 local defaults = {
@@ -85,6 +84,13 @@ local defaults = {
       Unit = " ",
       Value = " ",
       Variable = " ",
+
+      Component = " ",
+      Fragment = " ",
+      TypeAlias = " ",
+      Parameter = " ",
+      StaticMethod = " ",
+      Macro = " ",
     },
     keys = {
       Up = " ",
