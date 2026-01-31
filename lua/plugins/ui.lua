@@ -1,5 +1,6 @@
 local diagnostics_icons = require("config").icons.diagnostics
 local git_icons = require("config").icons.git
+local kind_icons = require("config").icons.kinds
 
 local function get_element_icon(opts)
   local mini_icons = require("mini.icons")
@@ -16,14 +17,23 @@ return {
     dependencies = "nvim-mini/mini.icons",
     opts = {
       options = {
+        buffer_close_icon = "",
+        modified_icon = " ",
+        close_icon = "",
+        left_trunc_marker = "",
+        right_trunc_marker = "",
         diagnostics = "nvim_lsp",
-        separator_style = "padded_slope",
         get_element_icon = get_element_icon,
+        separator_style = "padded_slope",
       },
     },
   },
 
-  { "nvim-mini/mini.icons", version = false, opts = {} },
+  {
+    "nvim-mini/mini.icons",
+    version = false,
+    opts = {},
+  },
 
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -45,6 +55,7 @@ return {
       return opts
     end,
   },
+
   {
     "HiPhish/rainbow-delimiters.nvim",
     main = "rainbow-delimiters.setup",
@@ -71,22 +82,22 @@ return {
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        lsp_doc_border = true, -- add a border to hover docs and signature help
       },
 
       cmdline = {
         format = {
-          cmdline = { icon = " " },
+          cmdline = { icon = " " },
           search_down = { icon = " " },
           search_up = { icon = " " },
           filter = { icon = " " },
-          lua = { icon = "󰢱 " },
+          lua = { icon = " " },
           help = { icon = " " },
           input = { icon = " " }, -- Used by input()
         },
       },
       popupmenu = {
-        kind_icons = {}, -- set to `false` to disable icons
+        kind_icons = kind_icons, -- set to `false` to disable icons
       },
     },
     dependencies = {
@@ -100,11 +111,24 @@ return {
     },
   },
 
-  { "rcarriga/nvim-notify", opts = { stages = "slide", render = "wrapped-compact" } },
+  {
+    "rcarriga/nvim-notify",
+    opts = { stages = "slide", render = "wrapped-compact" },
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "vim", "regex", "lua", "bash", "markdown", "markdown_inline" } },
+    opts = {
+      -- nvim-treesitter (optional, but highly recommended) used for highlighting the cmdline and lsp docs. Make sure to install the parsers for
+      ensure_installed = {
+        "bash",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "regex",
+        "vim",
+      },
+    },
   },
 
   {
@@ -113,10 +137,10 @@ return {
     opts = {
       sections = {
         lualine_b = {
-          { "branch", icon = "" },
+          { "branch", icon = " " },
           {
             "diff",
-            symbols = { added = git_icons.added, modified = git_icons.modified, removed = git_icons.removed }, -- Changes the symbols used by the diff.
+            symbols = { added = git_icons.added, modified = git_icons.modified, removed = git_icons.removed },
           },
           {
             "diagnostics",
@@ -187,5 +211,6 @@ return {
       }
       return opts
     end,
+    dependencies = "nvim-mini/mini.icons",
   },
 }
