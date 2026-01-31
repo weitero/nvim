@@ -21,27 +21,36 @@ return {
   },
 
   {
-    "WhoIsSethDanial/mason-tool-installer.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "gofumpt",
-      },
-    },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        go = {
-          "gofumpt",
-          lsp_format = "never",
-        },
-      },
-      formatters = {
-        gofumpt = {
-          prepend_args = {
-            "-extra",
+      servers = {
+        gopls = {
+          settings = {
+            -- Build
+            directoryFilters = {
+              "-**/node_modules",
+            },
+            expandWorkspaceToModule = false,
+            -- Formatting
+            gofumpt = true,
+            -- Completion
+            usePlaceholders = true,
+            -- Diagnostic
+            analyses = {
+              shadow = true,
+              unusedparams = true,
+            },
+            staticcheck = true,
+            vulncheck = "Imports",
+            diagnosticsDelay = "250ms",
+            diagnosticsTrigger = "Save",
+            -- Inlayhint
+            hints = {
+              compositeLiteralFields = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+            },
           },
         },
       },
