@@ -13,22 +13,28 @@ return {
           settings = {
             -- https://luals.github.io/wiki/settings/
             Lua = {
-              codeLens = { enable = true },
+              codeLens = {
+                enable = true,
+              },
               completion = {
                 callSnippet = "Both",
                 keywordSnippet = "Both",
               },
-              diagnostics = { neededFileStatus = { ["codestyle-check"] = "Any" } },
+              diagnostics = {
+                disable = { "lowercase-global" },
+                globals = { "vim" },
+                neededFileStatus = {
+                  ["codestyle-check"] = "Any",
+                },
+              },
               format = {
                 defaultConfig = {
                   indent_size = "2",
                   continuation_indent = "2",
                 },
-                enable = false,
               },
               hint = {
                 enable = true,
-                setType = true,
               },
               runtime = {
                 path = {
@@ -41,8 +47,9 @@ return {
               },
               telemetry = { enable = false },
               workspace = {
-                checkThirdParty = false,
+                checkThirdParty = "Disable",
                 library = {
+                  "$VIMRUNTIME",
                   "${3rd}/busted/library",
                   "${3rd}/luv/library",
                 },
