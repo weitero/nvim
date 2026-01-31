@@ -7,8 +7,12 @@ return {
     main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = { "lua" },
+      sync_install = true,
+      auto_install = true,
       highlight = {
-        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+        enable = true,
+
+        -- to disable slow treesitter highlight for large files
         ---@diagnostic disable-next-line: unused-local
         disable = function(lang, buf)
           local max_filesize = 100 * 1024 -- 100 KB
@@ -17,6 +21,8 @@ return {
             return true
           end
         end,
+
+        additional_vim_regex_highlighting = false,
       },
       -- Incremental selection based on the named nodes from the grammar.
       incremental_selection = {
@@ -29,7 +35,9 @@ return {
         },
       },
       -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
-      indent = { enable = true },
+      indent = {
+        enable = true,
+      },
     },
     opts_extend = { "ensure_installed" },
     init = function()
@@ -46,8 +54,16 @@ return {
         "nvim-treesitter/nvim-treesitter",
         opts = {
           refactor = {
-            highlight_definitions = { enable = true, clear_on_cursor_move = true },
-            smart_rename = { enable = true, keymaps = { smart_rename = "grn" } },
+            highlight_definitions = {
+              enable = true,
+              clear_on_cursor_move = true,
+            },
+            smart_rename = {
+              enable = true,
+              keymaps = {
+                smart_rename = "grn",
+              },
+            },
             navigation = {
               enable = true,
               -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
@@ -115,8 +131,8 @@ return {
             },
             swap = {
               enable = true,
-              swap_next = { ["<leader>s"] = "@parameter.inner" },
-              swap_previous = { ["<leader>S"] = "@parameter.inner" },
+              swap_next = { ["<leader>a"] = "@parameter.inner" },
+              swap_previous = { ["<leader>A"] = "@parameter.inner" },
             },
             move = {
               enable = true,
@@ -184,9 +200,12 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     opts = {},
     init = function()
-      vim.keymap.set("n", "[c", function()
-        require("treesitter-context").go_to_context(vim.v.count1)
-      end, { silent = true })
+      vim.keymap.set(
+        "n",
+        "[c",
+        function() require("treesitter-context").go_to_context(vim.v.count1) end,
+        { silent = true }
+      )
     end,
   },
 }
