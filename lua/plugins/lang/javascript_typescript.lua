@@ -17,6 +17,11 @@ return {
         "tailwindcss",
         "vtsls",
       },
+      automatic_enable = {
+        exclude = {
+          "biome",
+        },
+      },
     },
   },
 
@@ -24,7 +29,27 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "prettier",
+        "biome",
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        javascript = {
+          "biomejs",
+        },
+        javascriptreact = {
+          "biomejs",
+        },
+        typescript = {
+          "biomejs",
+        },
+        typescriptreact = {
+          "biomejs",
+        },
       },
     },
   },
@@ -34,20 +59,16 @@ return {
     opts = {
       formatters_by_ft = {
         javascript = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
         javascriptreact = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
         typescript = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
         typescriptreact = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
       },
     },
