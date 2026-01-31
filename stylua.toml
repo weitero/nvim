@@ -1,14 +1,8 @@
 # tombi: format.rules.table-keys-order = "version-sort"
 
-call_parentheses = "Always"
-collapse_simple_statement = "Never"
-column_width = 120
+collapse_simple_statement = "FunctionOnly"
 indent_type = "Spaces"
 indent_width = 2
-line_endings = "Unix"
-quote_style = "AutoPreferDouble"
-space_after_function_names = "Never"
-syntax = "All"
 
 [sort_requires]
 enabled = true
