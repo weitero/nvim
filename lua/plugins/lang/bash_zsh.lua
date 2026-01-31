@@ -36,27 +36,12 @@ return {
             bashIde = {
               enableSourceErrorDiagnostics = true,
               shfmt = {
-                -- The following formatting flags closely resemble Google's shell style defined in https://google.github.io/styleguide/shellguide.html:
                 binaryNextLine = true,
                 caseIndent = true,
                 simplifyCode = true,
               },
             },
           },
-        },
-      },
-    },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        sh = {
-          lsp_format = "prefer",
-        },
-        zsh = {
-          lsp_format = "prefer",
         },
       },
     },
