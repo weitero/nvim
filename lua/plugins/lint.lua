@@ -1,12 +1,13 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    event = { "BufReadPre", "BufNewFile" },
     opts = {
-      events = { "BufWritePost", "InsertLeave", "TextChanged" },
-      linters_by_ft = {
-        -- lua = { "selene" },
+      events = {
+        "BufWritePost",
+        "InsertLeave",
+        "TextChanged",
       },
+      linters_by_ft = {},
     },
     config = function(_, opts)
       local lint = require("lint")
@@ -19,5 +20,9 @@ return {
         end,
       })
     end,
+    event = {
+      "BufNewFile",
+      "BufReadPre",
+    },
   },
 }

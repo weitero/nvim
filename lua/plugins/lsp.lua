@@ -1,7 +1,9 @@
 vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
 
 return {
-  { "b0o/schemastore.nvim" },
+  {
+    "b0o/schemastore.nvim",
+  },
 
   {
     "neovim/nvim-lspconfig",
