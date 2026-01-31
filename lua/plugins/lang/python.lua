@@ -38,11 +38,22 @@ return {
         basedpyright = {
           settings = {
             basedpyright = {
-              disableOrganizeImports = true,
               analysis = {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
-                inlayHints = { callArgumentNamesMatching = true },
+                diagnosticMode = "workspace",
+                inlayHints = {
+                  callArgumentNamesMatching = true,
+                },
+                useTypingExtensions = true,
+                exclude = {
+                  "__pycache__",
+                  "build",
+                  "dist",
+                },
+                extraPaths = {
+                  "src",
+                },
                 typeCheckingMode = "standard",
               },
             },
@@ -60,7 +71,6 @@ return {
           "ruff_fix",
           "ruff_format",
           "ruff_organize_imports",
-          lsp_format = "never",
         },
       },
     },
