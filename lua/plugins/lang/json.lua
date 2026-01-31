@@ -1,7 +1,9 @@
 vim.filetype.add({
   filename = {
     [".djlintrc"] = "json",
+    [".stylelintrc"] = "json",
     ["dot_djlintrc"] = "json",
+    djlintrc = "json",
   },
 })
 
@@ -23,6 +25,11 @@ return {
       ensure_installed = {
         "jsonls",
       },
+      automatic_enable = {
+        exclude = {
+          "biome",
+        },
+      },
     },
   },
 
@@ -31,6 +38,7 @@ return {
     opts = {
       ensure_installed = {
         "fixjson",
+        "prettier",
       },
     },
   },
@@ -42,8 +50,8 @@ return {
         jsonls = {
           settings = {
             json = {
-              schemas = require("schemastore").json.schemas(),
               validate = { enable = true },
+              schemas = require("schemastore").json.schemas(),
             },
           },
         },
@@ -57,15 +65,12 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
-          lsp_format = "last",
         },
         json5 = {
-          "fixjson",
-          lsp_format = "never",
+          "prettier",
         },
         jsonc = {
           "fixjson",
-          lsp_format = "last",
         },
       },
     },
