@@ -21,7 +21,44 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "prettier",
+        "biome",
+        "htmlhint",
+      },
+    },
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "astro",
+      "dot",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "liquid",
+      "markdown",
+      "php",
+      "rescript",
+      "svelte",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "xml",
+    },
+    events = {
+      "BufNewFile",
+      "BufReadPre",
+    },
+    opts = {},
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        html = {
+          "htmlhint",
+        },
       },
     },
   },
@@ -31,8 +68,7 @@ return {
     opts = {
       formatters_by_ft = {
         html = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
       },
     },
