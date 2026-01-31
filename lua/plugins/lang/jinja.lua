@@ -36,17 +36,11 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
+    "mfussenegger/nvim-lint",
     opts = {
-      servers = {
-        jinja_lsp = {
-          settings = {
-            filetypes = { "jinja" },
-            settings = {
-              templates = "./templates",
-              backend = "./src",
-            },
-          },
+      linters_by_ft = {
+        jinja = {
+          "djlint",
         },
       },
     },
@@ -58,7 +52,6 @@ return {
       formatters_by_ft = {
         jinja = {
           "djlint",
-          lsp_format = "never",
         },
       },
     },
