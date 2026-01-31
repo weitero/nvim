@@ -1,9 +1,16 @@
 return {
   {
+    -- Tree-sitter is required to enable much of the functionality of R.nvim.
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "csv",
+        "latex",
+        "markdown",
+        "markdown_inline",
         "r",
+        "rnoweb",
+        "yaml",
       },
     },
   },
@@ -14,20 +21,6 @@ return {
       ensure_installed = {
         "r_language_server",
       },
-      automatic_enable = {
-        exclude = {
-          "air",
-        },
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "air",
-      },
     },
   },
 
@@ -37,50 +30,5 @@ return {
       "r",
     },
     opts = {},
-  },
-
-  {
-    "R-nvim/cmp-r",
-    ft = {
-      "r",
-    },
-    dependencies = {
-      "R-nvim/R.nvim",
-    },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        r = {
-          "air",
-          lsp_format = "never",
-        },
-      },
-    },
-  },
-
-  {
-    "saghen/blink.cmp",
-    dependencies = {
-      "R-nvim/cmp-r",
-    },
-    opts = {
-      sources = {
-        per_filetype = {
-          r = {
-            inherit_defaults = true,
-            "cmp_r",
-          },
-        },
-        providers = {
-          cmp_r = {
-            name = "cmp_r",
-            module = "blink.compat.source",
-          },
-        },
-      },
-    },
   },
 }
