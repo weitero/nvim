@@ -44,7 +44,6 @@ return {
     },
     opts = {
       ensure_installed = {
-        "selene",
         "stylua",
       },
       auto_update = true,
