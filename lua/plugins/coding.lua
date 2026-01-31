@@ -35,5 +35,7 @@ return {
     },
   },
 
-  { import = "plugins.extended.coding" },
+  {
+    import = "plugins.extended.coding",
+  },
 }
