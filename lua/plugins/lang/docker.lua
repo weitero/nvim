@@ -28,14 +28,33 @@ return {
   },
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = {
+        "hadolint",
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        dockerfile = {
+          "hadolint",
+        },
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
         ["yaml.docker-compose"] = {
-          lsp_format = "prefer",
-        },
-        dockerfile = {
-          lsp_format = "prefer",
+          "yamlfix",
+          "yamlfmt",
+          lsp_format = "last",
         },
       },
     },
