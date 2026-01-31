@@ -18,10 +18,12 @@ return {
   },
 
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "mfussenegger/nvim-lint",
     opts = {
-      ensure_installed = {
-        "prettier",
+      linters_by_ft = {
+        awk = {
+          "gawk",
+        },
       },
     },
   },
@@ -31,8 +33,7 @@ return {
     opts = {
       formatters_by_ft = {
         awk = {
-          "prettier",
-          lsp_format = "never",
+          "gawk",
         },
       },
     },
