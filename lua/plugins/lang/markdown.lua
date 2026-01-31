@@ -10,10 +10,33 @@ return {
   },
 
   {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "marksman",
+      },
+    },
+  },
+
+  {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
+        "markdownlint",
         "prettier",
+        "vale",
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        markdown = {
+          "markdownlint",
+          "vale",
+        },
       },
     },
   },
@@ -23,8 +46,8 @@ return {
     opts = {
       formatters_by_ft = {
         markdown = {
+          "markdownlint",
           "prettier",
-          lsp_format = "never",
         },
       },
     },
