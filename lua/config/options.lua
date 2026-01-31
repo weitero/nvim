@@ -12,7 +12,6 @@ opt.confirm = true -- ask what to do about unsaved/read-only files
 opt.copyindent = true -- make 'autoindent' use existing indent structure
 opt.cursorline = true -- highlight the screen line of the cursor
 opt.expandtab = true -- use spaces when <Tab> is inserted
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- expression used when 'foldmethod' is "expr"
 opt.foldlevel = 99 -- close folds with a level higher than this
 opt.foldmethod = "expr" -- folding type
 opt.formatoptions:append({ ["1"] = true, n = true, t = true }) -- how automatic formatting is to be done
@@ -22,7 +21,7 @@ opt.jumpoptions = "view" -- specifies how jumping is done
 opt.laststatus = 3 -- tells when last window has status lines
 opt.linebreak = true -- wrap long lines at a blank
 opt.list = true -- show <Tab> and <EOL>
-opt.listchars:append({ eol = "", leadmultispace = " ", multispace = "󱁐󱁐" }) -- characters for displaying in list mode
+opt.listchars:append({ eol = "" }) -- characters for displaying in list mode
 opt.modeline = false -- recognize modelines at start or end of file
 opt.modelines = 0 -- number of lines checked for modelines
 opt.mouse = "a" -- enable the use of mouse clicks
