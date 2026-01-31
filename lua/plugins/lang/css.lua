@@ -23,7 +23,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "prettier",
+        "biome",
       },
     },
   },
@@ -33,8 +33,7 @@ return {
     opts = {
       formatters_by_ft = {
         css = {
-          "prettier",
-          lsp_format = "never",
+          "biome",
         },
       },
     },
