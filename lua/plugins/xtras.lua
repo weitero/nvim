@@ -1,1 +1,5 @@
-return { { import = "plugins.lang" } }
+return {
+  {
+    import = "plugins.lang",
+  },
+}
