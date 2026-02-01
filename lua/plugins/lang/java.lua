@@ -38,50 +38,25 @@ return {
         java = {
           cleanup = {
             actionsOnSave = {
+              "addDeprecated",
+              "addFinalModifier",
+              "addOverride",
+              "instanceofPatternMatch",
+              "invertEquals",
+              "lambdaExpression",
               "qualifyMembers",
               "qualifyStaticMembers",
-              "addOverride",
-              "addDeprecated",
               "stringConcatToTextBlock",
-              "invertEquals",
-              "addFinalModifier",
-              "instanceofPatternMatch",
-              "lambdaExpression",
               "switchExpression",
             },
           },
           codeGeneration = { generateComments = true },
-          codeAction = { sortMembers = { avoidVolatileChanges = true } },
-          completion = {
-            enabled = true,
-            matchCase = "off",
-          },
-          -- Enable/disable default Java formatter
-          -- default is true
-          format = {
-            comments = { enabled = true },
-            insertSpaces = true,
-            onType = { enabled = true },
-            tabSize = 4,
-          },
-          -- Enable/disable the implementations code lens,
-          implementationCodeLens = "all",
-          inlayhints = { parameterNames = { enabled = "all" } },
-          rename = { enabled = true },
-          saveActions = {
-            -- Enable/disable auto organize imports on save action,
-            -- default is false
-            organizeImports = true,
-            cleanup = true,
-          },
-          -- Enable/disable the signature help,
-          -- default is false
-          signatureHelp = {
-            enabled = true,
-            description = { enabled = true },
-          },
-          symbols = { includeSourceMethodDeclarations = true },
+          completion = { matchCase = false },
           edit = { smartSemicolonDetection = { enabled = true } },
+          implementationCodeLens = "all",
+          referencesCodeLens = { enabled = true },
+          saveActions = { organizeImports = true },
+          signatureHelp = { description = { enabled = true } },
           telemetry = { enabled = false },
         },
       },
