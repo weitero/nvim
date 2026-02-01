@@ -1,7 +1,6 @@
 vim.filetype.add({
   filename = {
     [".djlintrc"] = "json",
-    [".stylelintrc"] = "json",
     ["dot_djlintrc"] = "json",
     djlintrc = "json",
   },
