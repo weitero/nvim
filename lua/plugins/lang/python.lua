@@ -41,15 +41,16 @@ return {
               analysis = {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
-                diagnosticMode = "workspace",
                 inlayHints = {
                   callArgumentNamesMatching = true,
                 },
                 useTypingExtensions = true,
+                autoFormatStrings = true,
                 exclude = {
-                  "__pycache__",
-                  "build",
-                  "dist",
+                  "**/__pycache__",
+                  "**/node_modules",
+                  ".git",
+                  ".venv",
                 },
                 extraPaths = {
                   "src",
