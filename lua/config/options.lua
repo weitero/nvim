@@ -39,6 +39,7 @@ opt.shortmess:append({ I = true, W = true, c = true }) -- list of flags, reduce 
 opt.showbreak = "" -- string to use at the start of wrapped lines
 opt.showmatch = true -- briefly jump to matching bracket if insert one
 opt.showmode = false -- message on status line to show current mode
+opt.showtabline = 2
 opt.sidescrolloff = 8 -- min. nr. of columns to left and right of cursor
 opt.smartcase = true -- no ignore case when pattern has uppercase
 opt.smartindent = true -- smart autoindenting for C programs
