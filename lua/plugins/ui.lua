@@ -2,31 +2,74 @@ local diagnostics_icons = require("config").icons.diagnostics
 local git_icons = require("config").icons.git
 local kind_icons = require("config").icons.kinds
 
-local function get_element_icon(opts)
-  local mini_icons = require("mini.icons")
-  if opts.directory then
-    return mini_icons.get("directory", opts.path)
-  end
-  return mini_icons.get("file", opts.path)
-end
-
 return {
   {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-mini/mini.icons",
+    "romgrk/barbar.nvim",
+    dependencies = {
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+
+      local map = vim.api.nvim_set_keymap
+      local options = { noremap = true, silent = true }
+      -- Move to previous/next
+      map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", options)
+      map("n", "<A-.>", "<Cmd>BufferNext<CR>", options)
+
+      -- Re-order to previous/next
+      map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", options)
+      map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", options)
+
+      -- Goto buffer in position...
+      map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", options)
+      map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", options)
+      map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", options)
+      map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", options)
+      map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", options)
+      map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", options)
+      map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", options)
+      map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", options)
+      map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", options)
+      map("n", "<A-0>", "<Cmd>BufferLast<CR>", options)
+
+      -- Pin/unpin buffer
+      map("n", "<A-p>", "<Cmd>BufferPin<CR>", options)
+      -- Close buffer
+      map("n", "<A-c>", "<Cmd>BufferClose<CR>", options)
+
+      -- Sort automatically by...
+      map("n", "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", options)
+      map("n", "<Space>bn", "<Cmd>BufferOrderByName<CR>", options)
+      map("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", options)
+      map("n", "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", options)
+      map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", options)
+    end,
     opts = {
-      options = {
-        buffer_close_icon = "",
-        modified_icon = " ",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
-        diagnostics = "nvim_lsp",
-        get_element_icon = get_element_icon,
-        separator_style = "padded_slope",
+      icons = {
+        -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+        -- animation = true,
+        -- insert_at_start = true,
+        -- …etc.
+        buffer_index = true,
+        button = " ",
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = { enabled = false },
+          [vim.diagnostic.severity.WARN] = { enabled = false },
+          [vim.diagnostic.severity.INFO] = { enabled = false },
+          [vim.diagnostic.severity.HINT] = { enabled = false },
+        },
+        gitsigns = {
+          added = { enabled = false },
+          changed = { enabled = false },
+          deleted = { enabled = false },
+        },
+        modified = { button = git_icons.modified },
+        pinned = { button = " ", filename = true },
       },
     },
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
   },
 
   {
