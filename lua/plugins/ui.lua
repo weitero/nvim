@@ -73,12 +73,6 @@ return {
   },
 
   {
-    "nvim-mini/mini.icons",
-    version = false,
-    opts = {},
-  },
-
-  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = function(_, opts)
@@ -176,7 +170,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-mini/mini.icons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       sections = {
         lualine_b = {
@@ -254,6 +248,6 @@ return {
       }
       return opts
     end,
-    dependencies = "nvim-mini/mini.icons",
+    dependencies = "nvim-tree/nvim-web-devicons",
   },
 }
