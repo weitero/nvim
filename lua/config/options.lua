@@ -1,4 +1,13 @@
 local opt = vim.opt
+opt.guicursor = {
+  "n-v-c:block",
+  "i-ci-ve:ver25",
+  "r-cr:hor20",
+  "o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+}
+
 opt.autowrite = true -- automatically write file if changed
 opt.breakat:remove("-") -- characters that may cause a line break
 opt.breakindent = true -- wrapped line repeats indent
@@ -63,4 +72,4 @@ opt.visualbell = true -- use visual bell instead of beeping
 opt.wildmode = { "longest:full", "full" } -- mode for 'wildchar' command-line expansion
 opt.winborder = "rounded" -- Defines the default border style of floating windows.
 opt.winminwidth = 5 -- minimal number of columns for any window
-opt.wrap = true -- long lines wrap and continue on the next line
+opt.wrap = false -- long lines wrap and continue on the next line
