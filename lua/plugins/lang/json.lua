@@ -36,6 +36,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
+        "biome",
         "fixjson",
         "prettier",
       },
@@ -64,12 +65,14 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
+          "biome",
         },
         json5 = {
           "prettier",
         },
         jsonc = {
           "fixjson",
+          "biome",
         },
       },
     },
