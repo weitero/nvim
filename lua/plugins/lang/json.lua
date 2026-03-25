@@ -24,11 +24,6 @@ return {
       ensure_installed = {
         "jsonls",
       },
-      automatic_enable = {
-        exclude = {
-          "biome",
-        },
-      },
     },
   },
 
@@ -36,9 +31,8 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "biome",
         "fixjson",
-        "prettier",
+        "oxfmt",
       },
     },
   },
@@ -65,14 +59,15 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
-          "biome",
+          "oxfmt",
         },
         json5 = {
-          "prettier",
+          "fixjson",
+          "oxfmt",
         },
         jsonc = {
           "fixjson",
-          "biome",
+          "oxfmt",
         },
       },
     },

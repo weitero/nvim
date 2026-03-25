@@ -21,7 +21,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "biome",
+        "oxfmt",
         "htmlhint",
       },
     },
@@ -68,7 +68,7 @@ return {
     opts = {
       formatters_by_ft = {
         html = {
-          "biome",
+          "oxfmt",
         },
       },
     },

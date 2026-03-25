@@ -17,11 +17,6 @@ return {
         "tailwindcss",
         "vtsls",
       },
-      automatic_enable = {
-        exclude = {
-          "biome",
-        },
-      },
     },
   },
 
@@ -29,7 +24,8 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "biome",
+        "oxfmt",
+        "oxlint",
       },
     },
   },
@@ -39,16 +35,16 @@ return {
     opts = {
       linters_by_ft = {
         javascript = {
-          "biomejs",
+          "oxlint",
         },
         javascriptreact = {
-          "biomejs",
+          "oxlint",
         },
         typescript = {
-          "biomejs",
+          "oxlint",
         },
         typescriptreact = {
-          "biomejs",
+          "oxlint",
         },
       },
     },
@@ -59,16 +55,16 @@ return {
     opts = {
       formatters_by_ft = {
         javascript = {
-          "biome",
+          "oxfmt",
         },
         javascriptreact = {
-          "biome",
+          "oxfmt",
         },
         typescript = {
-          "biome",
+          "oxfmt",
         },
         typescriptreact = {
-          "biome",
+          "oxfmt",
         },
       },
     },
