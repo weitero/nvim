@@ -1,6 +1,5 @@
 # tombi: format.rules.table-keys-order = "version-sort"
 
-collapse_simple_statement = "FunctionOnly"
 indent_type = "Spaces"
 indent_width = 2
 
