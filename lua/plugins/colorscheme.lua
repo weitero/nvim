@@ -3,13 +3,14 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    init = function() vim.cmd.colorscheme("catppuccin") end,
+    init = function()
+      vim.cmd.colorscheme("catppuccin-nvim")
+    end,
     opts = {
-      transparent_background = true,
+      transparent_background = true, -- disables setting the background color.
       float = {
-        transparent = true,
+        transparent = true, -- enable transparent floating windows
       },
-      show_end_of_buffer = true,
       auto_integrations = true,
     },
   },
