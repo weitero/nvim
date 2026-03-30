@@ -72,4 +72,4 @@ opt.visualbell = true -- use visual bell instead of beeping
 opt.wildmode = { "longest:full", "full" } -- mode for 'wildchar' command-line expansion
 opt.winborder = "rounded" -- Defines the default border style of floating windows.
 opt.winminwidth = 5 -- minimal number of columns for any window
-opt.wrap = false -- long lines wrap and continue on the next line
+opt.wrap = true -- long lines wrap and continue on the next line
