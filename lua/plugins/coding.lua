@@ -4,7 +4,7 @@ return {
     version = false,
     opts = {
       -- In which modes mappings from this `config` should be created
-      modes = { command = true },
+      modes = { command = true, terminal = true },
     },
   },
 
@@ -33,9 +33,5 @@ return {
       { "<Leader>nf", ":lua require('neogen').generate()<CR>", { noremap = true, silent = true } },
       { "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", { noremap = true, silent = true } },
     },
-  },
-
-  {
-    import = "plugins.extended.coding",
   },
 }
