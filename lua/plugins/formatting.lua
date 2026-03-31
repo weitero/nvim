@@ -26,6 +26,7 @@ return {
     },
     -- This will provide type hinting with LuaLS
     --- @module "conform"
+    --- @diagnostic disable: undefined-doc-name
     --- @type conform.setupOpts
     opts = {
       -- Map of filetype to formatters
