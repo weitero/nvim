@@ -17,7 +17,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = { lemminx = {} },
+      servers = { lemminx = { cmd = { "lemminx-osx-aarch_64" } } },
     },
   },
 }
