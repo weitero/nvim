@@ -39,15 +39,15 @@ return {
       formatters_by_ft = {
         json = {
           "fixjson",
-          "oxfmt",
+          lsp_format = "last",
         },
         json5 = {
           "fixjson",
-          "oxfmt",
+          lsp_format = "last",
         },
         jsonc = {
           "fixjson",
-          "oxfmt",
+          lsp_format = "last",
         },
       },
     },
