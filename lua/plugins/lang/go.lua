@@ -12,15 +12,6 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "gopls",
-      },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

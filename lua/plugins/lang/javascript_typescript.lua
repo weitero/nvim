@@ -11,21 +11,11 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "tailwindcss",
-        "vtsls",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "oxfmt",
-        "oxlint",
+      servers = {
+        vtsls = {},
+        tailwindcss = {},
       },
     },
   },

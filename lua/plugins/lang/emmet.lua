@@ -18,11 +18,9 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/lspconfig",
     opts = {
-      ensure_installed = {
-        "emmet_language_server",
-      },
+      servers = { emmet_language_server = {} },
     },
   },
 }

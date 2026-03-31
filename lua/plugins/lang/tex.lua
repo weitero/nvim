@@ -10,24 +10,6 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "texlab",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "latexindent",
-      },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

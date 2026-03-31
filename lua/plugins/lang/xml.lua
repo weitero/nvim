@@ -15,11 +15,9 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "lemminx",
-      },
+      servers = { lemminx = {} },
     },
   },
 }

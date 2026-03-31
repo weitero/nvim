@@ -18,20 +18,11 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "docker_compose_language_service",
-        "dockerls",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "hadolint",
+      servers = {
+        dockerls = {},
+        docker_compose_language_service = {},
       },
     },
   },

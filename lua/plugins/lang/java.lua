@@ -9,20 +9,6 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "jdtls",
-      },
-      automatic_enable = {
-        exclude = {
-          "jdtls",
-        },
-      },
-    },
-  },
-
-  {
     "mfussenegger/nvim-jdtls",
     ft = {
       "java",
@@ -30,7 +16,7 @@ return {
     opts = {
       -- The command that starts the language server
       -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-      cmd = { vim.fn.stdpath("data") .. "/mason/bin/jdtls" },
+      cmd = { "jdtls" },
       root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 
       -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request

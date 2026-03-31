@@ -9,20 +9,10 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "html",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "oxfmt",
-        "htmlhint",
+      servers = {
+        html = {},
       },
     },
   },

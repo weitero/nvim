@@ -10,20 +10,11 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "cssls",
-        "tailwindcss",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "oxfmt",
+      servers = {
+        cssls = { cmd = { "css-language-server" } },
+        tailwindcss = {},
       },
     },
   },

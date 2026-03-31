@@ -9,11 +9,7 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "tombi",
-      },
-    },
+    "neovim/nvim-lspconfig",
+    opts = { servers = { tombi = {} } },
   },
 }

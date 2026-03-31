@@ -18,21 +18,8 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "jinja_lsp",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "djlint",
-      },
-    },
+    "neovim/nvim-lspconfig",
+    opts = { servers = { jinja_lsp = {} } },
   },
 
   {

@@ -13,26 +13,6 @@ return {
       ensure_installed = {
         "json",
         "json5",
-        "jsonc",
-      },
-    },
-  },
-
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "jsonls",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "fixjson",
-        "oxfmt",
       },
     },
   },

@@ -18,26 +18,6 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "yamlls",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "yamlfix",
-        "yamlfmt",
-        "yamllint",
-      },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

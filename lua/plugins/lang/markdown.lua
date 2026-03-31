@@ -10,21 +10,10 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "marksman",
-      },
-    },
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        "markdownlint",
-        "prettier",
-        "vale",
+      servers = {
+        markdown = {},
       },
     },
   },

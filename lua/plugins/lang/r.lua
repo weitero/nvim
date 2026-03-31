@@ -16,10 +16,10 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "r_language_server",
+      servers = {
+        r_language_server = {},
       },
     },
   },

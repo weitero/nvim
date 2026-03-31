@@ -1,10 +1,3 @@
-vim.filetype.add({
-  extension = {
-    bean = "beancount",
-    beancount = "beancount",
-  },
-})
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -16,10 +9,10 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "beancount",
+      servers = {
+        beancount = {},
       },
     },
   },

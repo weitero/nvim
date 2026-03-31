@@ -9,10 +9,10 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      ensure_installed = {
-        "awk_ls",
+      servers = {
+        awk_ls = {},
       },
     },
   },
@@ -33,7 +33,7 @@ return {
     opts = {
       formatters_by_ft = {
         awk = {
-          "gawk",
+          "prettier",
         },
       },
     },
