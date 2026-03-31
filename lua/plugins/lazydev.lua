@@ -15,6 +15,7 @@ return {
     "saghen/blink.cmp",
     opts = {
       sources = {
+        -- add lazydev to your completion providers
         per_filetype = {
           -- optionally inherit from the `default` sources
           lua = { inherit_defaults = true, "lazydev" },
@@ -23,11 +24,8 @@ return {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
-
-            --- NOTE: All of these options may be functions to get dynamic behavior
-            --- See the type definitions for more information
             -- make lazydev completions top priority (see `:h blink.cmp`)
-            score_offset = 100, -- Boost/penalize the score of the items
+            score_offset = 100,
           },
         },
       },
