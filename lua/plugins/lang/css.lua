@@ -13,7 +13,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        cssls = { cmd = { "css-language-server" } },
+        cssls = {},
         tailwindcss = {},
       },
     },
