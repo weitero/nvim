@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "codeLens": {
+    "enable": true
+  },
+  "completion": {
+    "callSnippet": "Both",
+    "keywordSnippet": "Both"
+  },
+  "diagnostics": {
+    "globals": [
+      "vim"
+    ]
+  },
+  "format": {
+    "enable": false
+  },
+  "hint": {
+    "awaitPropagate": true,
+    "enable": true,
+    "setType": true
+  },
+  "runtime": {
+    "path": [
+      "?.lua",
+      "?/init.lua",
+      "lua/?.lua",
+      "lua/?/init.lua"
+    ],
+    "version": "LuaJIT"
+  },
+  "semantic": {
+    "keyword": true
+  },
+  "type": {
+    "castNumberToInteger": true,
+    "checkTableShape": true,
+    "inferParamType": true
+  },
+  "workspace": {
+    "checkThirdParty": "Disable",
+    "library": [
+      "$VIMRUNTIME",
+      "${3rd}/busted/library",
+      "${3rd}/luv/library"
+    ]
+  }
+}
