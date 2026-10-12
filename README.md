@@ -1,19 +1,12 @@
 # nvim
 
-Personal Neovim configuration adapted from **LazyVim**.
-
-- Plugin manager: **lazy.nvim**
-- External tooling (LSP servers / formatters / linters): **mason.nvim** (+ mason-tool-installer)
-- LSP configuration: **nvim-lspconfig**
-- Formatting: **conform.nvim**
-- Linting: **nvim-lint**
-- Autocompletion: **blink.cmp**
+Personal Neovim configuration with built-in package management and LSP setup.
 
 ## Requirements
 
-- Neovim 0.11+ (uses `vim.lsp.config`)
+- Neovim 0.12+
 - Git
-- Nerd Font (recommended for icons)
+- Nerd Font (recommended)
 
 ## Install
 
@@ -22,49 +15,31 @@ git clone https://github.com/weitero/nvim.git ~/.config/nvim
 nvim
 ```
 
-On first launch, `lazy.nvim` bootstraps itself and installs plugins.
+Plugins are installed with Neovim's `vim.pack` on startup.
 
-## What’s included
+## Included
 
-- Plugins: `lazy.nvim`
-- Tooling: `mason.nvim` + `mason-lspconfig.nvim` + `mason-tool-installer.nvim`
-- LSP: `nvim-lspconfig` (configured via `vim.lsp.config`)
-- Formatting: `conform.nvim` (format-on-save, LSP fallback)
-- Linting: `nvim-lint` (on write/insert-leave/text-changed)
-- Completion: `blink.cmp` (+ `blink.compat`)
+- LSP: `nvim-lspconfig` with `vim.lsp.config`, using globally installed mise executables
+- Completion and snippets: `mini.completion` and `mini.snippets`
+- Formatting: `conform.nvim` using globally installed mise tools
+- Linting: `nvim-lint` using globally installed mise tools
+- Syntax and text objects: Treesitter
+- Navigation and editing: `mini.pick`, Flash, Oil, persistence, and more
+- Colorscheme: Catppuccin
 
 ## Layout
 
 - [init.lua](init.lua): entry point
-- [lua/config/lazy.lua](lua/config/lazy.lua): lazy.nvim bootstrap + spec import
-- [lua/config/](lua/config/): options, keymaps, autocmds, diagnostics
-- [lua/plugins/](lua/plugins/): plugin specs
-  - [lua/plugins/init.lua](lua/plugins/init.lua): loads core config modules early
-  - [lua/plugins/lang/](lua/plugins/lang/): per-language setup (LSP/formatters/linters)
-  - [lua/plugins/extended/](lua/plugins/extended/): optional/extra modules
+- [lua/pack.lua](lua/pack.lua): leaders and plugin modules
+- [lua/plugins/](lua/plugins/): plugin configuration
+- [plugin/](plugin/): options, keymaps, autocmds, and diagnostics
 
 ## Usage
 
-- `:Lazy` / `:Lazy sync` — manage plugin state
-- `:Mason` — install/update external tools
-- `<leader>f` — format (normal/visual)
-- `:ConformInfo` — formatter status
+- `<Space>f` or `:Format` — format the current buffer or range
+- `:checkhealth` — check the Neovim environment
+- `:LspInfo` — inspect active language servers
 
-## Defaults
-
-- Leader: `<Space>`; local leader: `\\` (set during lazy bootstrap)
-- Colorscheme: `catppuccin` (with `auto-dark-mode.nvim`)
-- UI: `noice.nvim`, `nvim-notify`, `lualine`, `bufferline`, `dashboard-nvim`, `which-key`
-- Treesitter: highlighting + incremental selection + textobjects + context (+ refactor helpers)
-- Lua formatting: `stylua` via conform (LuaLS formatting is not used by default)
-
-## VS Code (VSCode Neovim)
-
-When `vim.g.vscode` is set, this config only loads a small allowlist of plugins to reduce conflicts. See [lua/config/lazy.lua](lua/config/lazy.lua).
-
-## Troubleshooting
-
-- Plugins not loading: run `:Lazy sync`, then restart Neovim
-- LSP not starting: check `:Mason` and `:LspInfo`
-- Formatting not running: check `:Mason`, then `:ConformInfo`
-- Lint not running: see `linters_by_ft` in [lua/plugins/lang/](lua/plugins/lang/)
+The local leader is `\\`. When used through VSCode Neovim, the plugin setup is
+skipped. LSP servers, formatters, and linters are managed by mise and installed
+globally so they are shared with VS Code.
