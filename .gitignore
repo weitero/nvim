@@ -39,5 +39,3 @@ luac.out
 *.x86_64
 *.hex
 
-lazy-lock.json
-.copilot-commit-message-instructions.md
