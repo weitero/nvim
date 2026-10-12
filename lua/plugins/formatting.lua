@@ -1,79 +1,59 @@
-local leave_visual_mode = function(err)
-  if not err then
-    if vim.startswith(string.lower(vim.api.nvim_get_mode().mode), "v") then
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
+
+vim.filetype.add({
+  filename = {
+    ["compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
+  },
+})
+
+-- {{{ conform.nvim
+require("conform").setup({
+  formatters_by_ft = {
+    awk = { "prettier" },
+    html = { "oxfmt" },
+    javascript = { "oxfmt" },
+    javascriptreact = { "oxfmt" },
+    jinja = { "djlint" },
+    json = { "fixjson", "jq", lsp_format = "last" },
+    json5 = { "fixjson", lsp_format = "last" },
+    jsonc = { "fixjson", lsp_format = "last" },
+    lua = { "stylua" },
+    markdown = { "markdownlint", "prettier" },
+    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+    sql = { "sql_formatter" },
+    toml = { "taplo", "tombi" },
+    typescript = { "oxfmt" },
+    typescriptreact = { "oxfmt" },
+    yaml = { "yamlfix", "yamlfmt" },
+    ["yaml.docker-compose"] = { "yamlfix", "yamlfmt", lsp_format = "last" },
+  },
+  default_format_opts = { async = true, lsp_format = "fallback" },
+  formatters = { jq = { args = { "-S", "." } } },
+})
+
+vim.keymap.set("", "<leader>f", function()
+  require("conform").format({}, function(err)
+    if not err then
+      local mode = vim.api.nvim_get_mode().mode
+      if vim.startswith(string.lower(mode), "v") then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+      end
     end
+  end)
+end, { desc = "Format code" })
+
+vim.api.nvim_create_user_command("Format", function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
   end
-end
-
-return {
-  {
-    "stevearc/conform.nvim",
-    -- Here is the recommended config for lazy-loading using lazy.nvim
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    keys = {
-      {
-        -- Customize or remove this keymap to your liking
-        "<leader>f",
-        function()
-          -- Leave visual mode after range format
-          require("conform").format({ async = true }, leave_visual_mode)
-        end,
-        mode = { "n", "v" },
-        desc = "Format code",
-      },
-    },
-    -- This will provide type hinting with LuaLS
-    --- @module "conform"
-    --- @diagnostic disable: undefined-doc-name
-    --- @type conform.setupOpts
-    opts = {
-      -- Map of filetype to formatters
-      default_format_opts = { lsp_format = "fallback" },
-      format_on_save = nil,
-      format_after_save = nil,
-      formatters = {
-        injected = {
-          options = {
-            -- Set to true to ignore errors
-            ignore_errors = false,
-            -- Map of treesitter language to filetype
-            lang_to_ft = {
-              bash = "sh",
-            },
-            -- Map of treesitter language to file extension
-            -- A temporary file name with this extension will be generated during formatting
-            -- because some formatters care about the filename.
-            lang_to_ext = {
-              bash = "sh",
-              c_sharp = "cs",
-              elixir = "exs",
-              javascript = "js",
-              julia = "jl",
-              latex = "tex",
-              markdown = "md",
-              python = "py",
-              ruby = "rb",
-              rust = "rs",
-              teal = "tl",
-              typescript = "ts",
-            },
-            -- Map of treesitter language to formatters to use
-            -- (defaults to the value from formatters_by_ft)
-            lang_to_formatters = {},
-          },
-        },
-      },
-    },
-    init = function()
-      -- If you want the formatexpr, here is the place to set it
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
-  },
-
-  {
-    "weitero/informal.nvim",
-    opts = {},
-  },
-}
+  require("conform").format({ range = range })
+end, { range = true })
+-- }}}
