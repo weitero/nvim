@@ -1,5 +1,6 @@
-# tombi: format.rules.table-keys-order = "version-sort"
+# tombi: format.rules.table-keys-order = "ascending"
 
+collapse_simple_statement = "Always"
 indent_type = "Spaces"
 indent_width = 2
 
