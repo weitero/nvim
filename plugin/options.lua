@@ -17,6 +17,7 @@ opt.foldmethod = "indent"
 opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 opt.formatoptions:append({ n = true, t = true })
 opt.ignorecase = true
+opt.inccommand = "split"
 opt.infercase = true
 opt.jumpoptions = "view"
 opt.laststatus = 3
