@@ -26,6 +26,7 @@ vim.lsp.enable({
   "lemminx",
   "lua_ls",
   "marksman",
+  "mise",
   "r_language_server",
   "rust_analyzer",
   "sqls",
@@ -41,6 +42,7 @@ vim.lsp.config("*", { capabilities = MiniCompletion.get_lsp_capabilities() })
 local schemas = require("schemastore")
 vim.lsp.config("jsonls", { settings = { json = { validate = { enable = true }, schemas = schemas.json.schemas() } } })
 vim.lsp.config("lemminx", { cmd = { "lemminx-osx-aarch_64" } })
+vim.lsp.config("mise", { init_options = { formatting = false, hover = false, completion = false } })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.java",
