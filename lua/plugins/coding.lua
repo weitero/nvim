@@ -25,6 +25,7 @@ require("mini.completion").setup({
       )
     end,
   },
+  fallback_action = "<C-x><C-f>",
 })
 MiniIcons.tweak_lsp_kind()
 
