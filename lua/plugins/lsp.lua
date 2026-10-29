@@ -18,6 +18,7 @@ vim.lsp.enable({
   "docker_compose_language_service",
   "dockerls",
   "emmet_language_server",
+  "gleam",
   "gopls",
   "html",
   "jdtls",

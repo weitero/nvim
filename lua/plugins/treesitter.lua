@@ -23,6 +23,7 @@ require("nvim-treesitter").install({
   "csv",
   "dockerfile",
   "editorconfig",
+  "gleam",
   "go",
   "gomod",
   "gotmpl",
